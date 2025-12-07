@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qab Lima</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <div class="site-container">
+        <!-- COLUNA 1: IDENTIDADE -->
+        <header class="coluna-esquerda">
+            <h1 class="logo"><a href="index.html">Qab Lima</a></h1>
+            <span class="handle">@qabqabqab</span>
+        </header>
+
+        <!-- COLUNA 2: O FEED (Vazio, será preenchido automaticamente pelo código lá embaixo) -->
+        <main class="coluna-meio" id="feed-artes">
+            <!-- As imagens aparecem aqui magicamente -->
+        </main>
+
+        <!-- COLUNA 3: MENU -->
+        <nav class="coluna-direita">
+            <ul id="menu-categorias">
+                <li><a href="#" onclick="filtrar('all')">all</a></li>
+                <!-- Categorias -->
+                <li><a href="#" onclick="filtrar('paintings')">paintings</a></li>
+                <li><a href="#" onclick="filtrar('digital illustration')">digital illustration</a></li>
+                <li><a href="#" onclick="filtrar('sketchbooks')">sketchbooks</a></li>
+                <li><a href="#" onclick="filtrar('3D')">3D</a></li>
+                <li><a href="#" onclick="filtrar('sculpture')">sculpture</a></li>
+                <li><a href="#" onclick="filtrar('music')">music</a></li>
+                <li><a href="#" onclick="filtrar('2D animation')">2D animation</a></li>
+                <li><a href="#" onclick="filtrar('pixel art')">pixel art</a></li>
+                <li><a href="#" onclick="filtrar('skateboard')">skateboard</a></li>
+            </ul>
+            
+            <div class="separador"></div>
+
+            <ul>
+                <li><a href="#">about me</a></li>
+                <li><a href="#">interviews</a></li>
+                <li><a href="#">exhibitions</a></li>
+                <li><a href="#">tutorials</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- --- AQUI COMEÇA A PROGRAMAÇÃO --- -->
+    
+    <!-- 1. Importa suas artes do arquivo dados.js -->
+    <script src="dados.js"></script>
+
+    <!-- 2. O Código que faz tudo funcionar -->
+    <script>
+        // Referência ao lugar onde as imagens vão aparecer
+        const feedContainer = document.getElementById('feed-artes');
+
+        // --- FUNÇÃO QUE EMBARALHA (MATEMÁTICA PURA) ---
+        // É isso aqui que garante que seu site sempre abra diferente
+        function embaralhar(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // --- FUNÇÃO QUE DESENHA NA TELA ---
+        function renderizarFeed(lista) {
+            feedContainer.innerHTML = ''; // Limpa o feed antes de começar
+            
+            lista.forEach(arte => {
+                const item = document.createElement('article');
+                item.className = 'post-arte';
+                
+                // LÓGICA DO LINK (Aquele ajuste que fizemos):
+                let tagExtra = '';
+                
+                if (arte.extra) {
+                    // Se tiver escrito E tiver link, cria botão clicável
+                    if (arte.linkExterno) {
+                        tagExtra = `<div class="info-dir"><a href="${arte.linkExterno}" target="_blank" class="botao-link">+ ${arte.extra}</a></div>`;
+                    } 
+                    // Se só tiver escrito (sem link), cria apenas o texto visual
+                    else {
+                        tagExtra = `<div class="info-dir"><span>+ ${arte.extra}</span></div>`;
+                    }
+                }
+
+                // Monta o HTML final daquela arte
+                item.innerHTML = `
+                    <div class="imagem-container">
+                        <img src="${arte.arquivo}" alt="${arte.titulo}">
+                    </div>
+                    <div class="info-container">
+                        <div class="info-esq">
+                            <h2>${arte.titulo}</h2>
+                            <p>${arte.info}</p>
+                        </div>
+                        ${tagExtra}
+                    </div>
+                `;
+                feedContainer.appendChild(item);
+            });
+        }
+
+        // --- INICIALIZAÇÃO ---
+        // Assim que o site abre, ele pega suas artes, EMBARALHA e desenha.
+        // O "minhasArtes" vem lá do arquivo dados.js
+        if (typeof minhasArtes !== 'undefined') {
+            const artesEmbaralhadas = embaralhar([...minhasArtes]);
+            renderizarFeed(artesEmbaralhadas);
+        } else {
+            console.error("Erro: Não encontrei suas artes. Verifique se o arquivo dados.js está na mesma pasta.");
+        }
+
+        // --- FILTROS DO MENU ---
+        function filtrar(categoria) {
+            if(categoria === 'all') {
+                renderizarFeed(embaralhar([...minhasArtes]));
+            } else {
+                const filtradas = minhasArtes.filter(a => a.categoria === categoria);
+                renderizarFeed(embaralhar(filtradas));
+            }
+        }
+    </script>
+</body>
+</html>

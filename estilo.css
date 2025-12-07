@@ -1,0 +1,197 @@
+/* --- RESET BÁSICO --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- CORPO DO SITE --- */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+    color: #000;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- LINKS GERAIS --- */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- O GRID (A ESTRUTURA DE 3 COLUNAS) --- */
+.site-container {
+    display: grid;
+    /* Coluna esq (250px) | Meio (Flexível) | Coluna dir (250px) */
+    grid-template-columns: 250px 1fr 250px;
+    height: 100%;
+}
+
+/* --- 1. COLUNA ESQUERDA (IDENTIDADE) --- */
+.coluna-esquerda {
+    padding: 40px;
+}
+
+.logo a {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.handle {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: #555;
+}
+
+/* --- 2. COLUNA DO MEIO (O FEED) --- */
+.coluna-meio {
+    background: white;
+    overflow-y: scroll; /* Permite rolar */
+    padding: 40px 0; /* Tirei o padding lateral exagerado */
+    display: flex;
+    flex-direction: column;
+    gap: 120px; /* Espaço maior entre as obras para dar respiro */
+}
+
+/* Esconde a barra de rolagem */
+.coluna-meio::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* --- AQUI ESTÁ A CORREÇÃO DO TAMANHO --- */
+.post-arte {
+    width: 100%;
+    /* Isso impede que a imagem fique gigante em monitores grandes */
+    max-width: 650px; 
+    /* Isso centraliza a imagem no meio da coluna */
+    margin: 0 auto; 
+    /* Um pouco de margem lateral para não colar no canto em telas menores */
+    padding: 0 20px; 
+}
+
+.post-arte img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Se quiser borda ou sombra suave, é aqui. Exemplo: */
+    /* box-shadow: 5px 5px 15px rgba(0,0,0,0.1); */
+}
+
+/* LEGENDA DA ARTE */
+.info-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.8rem;
+}
+
+.info-esq h2 {
+    font-size: 0.95rem;
+    font-weight: normal;
+    margin-bottom: 4px;
+}
+
+.info-esq p {
+    color: #666;
+    font-size: 0.7rem;
+}
+
+/* ESTILO DO BOTÃO/LINK */
+.info-dir span, 
+.botao-link {
+    background: #eee;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    white-space: nowrap;
+}
+
+.botao-link {
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.botao-link:hover {
+    background: #ddd;
+    border-color: #ccc;
+    text-decoration: none;
+}
+
+/* --- 3. COLUNA DIREITA (MENU) --- */
+.coluna-direita {
+    background-color: #e5e5e5;
+    padding: 40px;
+    font-size: 0.85rem;
+    overflow-y: auto;
+}
+
+.coluna-direita ul {
+    list-style: none;
+}
+
+.coluna-direita li {
+    margin-bottom: 10px;
+}
+
+.coluna-direita a {
+    color: #333;
+}
+
+.coluna-direita a:hover {
+    color: #000;
+}
+
+.separador {
+    height: 1px;
+    background: #bbb;
+    margin: 30px 0;
+    width: 100%;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 900px) {
+    body {
+        overflow: auto;
+    }
+
+    .site-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .coluna-esquerda {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .coluna-meio {
+        padding: 40px 0;
+        overflow: visible;
+        gap: 60px;
+    }
+
+    .coluna-direita {
+        padding: 40px 20px;
+        text-align: center;
+        order: 3;
+    }
+    
+    .info-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
