@@ -39,7 +39,7 @@ const minhasArtes = [
   },
   {
   titulo: "tijolin",
-    categoria: "3d",
+    categoria: "sculpture",
     info: "ink on brick, 2021",
     arquivo: "imagens/tijolin.glb",
     extra: "posted on Zora",
@@ -63,6 +63,15 @@ const minhasArtes = [
     extra: "posted on Zora",
     tipo: "video",
     linkExterno: "https://zora.co/coin/base:0x0f345eed05ae0aa832d5486ec5fabc7c8c27336b?referrer=0x4084cb24f8a4b9945a41c641e8d55a39216f109c"
+},
+{
+  titulo: "marbie princess slide",
+    categoria: "2D-animation",
+    info: "procreate, 2024",
+    arquivo: "imagens/gif1.gif",
+    extra: "posted on Objkt",
+    tipo: "imagem",
+    linkExterno: "https://objkt.com/tokens/KT1Gj71kLWX59aXv5L6u5a16bgmHkEfLHVCn/40"
 },
 
 ];
