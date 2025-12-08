@@ -1,11 +1,7 @@
 /* --- RESET BÁSICO --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* --- CORPO DO SITE --- */
+/* --- CORPO --- */
 body {
     font-family: 'Courier New', Courier, monospace;
     background-color: #f4f4f4;
@@ -14,80 +10,67 @@ body {
     overflow: hidden;
 }
 
-/* --- LINKS GERAIS --- */
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: opacity 0.2s;
-}
+/* LINKS */
+a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+a:hover { text-decoration: underline; }
 
-a:hover {
-    text-decoration: underline;
-}
-
-/* --- O GRID (A ESTRUTURA DE 3 COLUNAS) --- */
+/* --- GRID PRINCIPAL --- */
 .site-container {
     display: grid;
-    /* Coluna esq (250px) | Meio (Flexível) | Coluna dir (250px) */
     grid-template-columns: 250px 1fr 250px;
     height: 100%;
 }
 
-/* --- 1. COLUNA ESQUERDA (IDENTIDADE) --- */
+/* --- COLUNA ESQUERDA --- */
 .coluna-esquerda {
     padding: 40px;
-}
-
-.logo a {
-    font-size: 1.4rem;
-    font-weight: bold;
-    letter-spacing: -1px;
-    text-decoration: none;
-}
-
-.handle {
-    display: block;
-    margin-top: 5px;
-    font-size: 0.75rem;
-    color: #555;
-}
-
-/* --- 2. COLUNA DO MEIO (O FEED) --- */
-.coluna-meio {
-    background: white;
-    overflow-y: scroll; /* Permite rolar */
-    padding: 40px 0; /* Tirei o padding lateral exagerado */
     display: flex;
     flex-direction: column;
-    gap: 120px; /* Espaço maior entre as obras para dar respiro */
+    justify-content: space-between; 
 }
+.logo a { font-size: 1.4rem; font-weight: bold; letter-spacing: -1px; text-decoration: none; }
 
-/* Esconde a barra de rolagem */
-.coluna-meio::-webkit-scrollbar {
-    width: 0px;
+/* Ícones Sociais */
+.social-links {
+    display: flex;
+    gap: 15px; 
+    margin-top: 20px;
+}
+.social-links a { display: block; width: 24px; height: 24px; color: #000; }
+.social-links a:hover { color: #555; }
+.social-links svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* Botão Mobile (Hambúrguer) */
+#btn-mobile {
+    display: none; /* Só aparece no celular */
     background: transparent;
+    border: none; /* Sem borda, bem clean */
+    cursor: pointer;
+    color: #000;
 }
 
-/* --- AQUI ESTÁ A CORREÇÃO DO TAMANHO --- */
+/* --- COLUNA MEIO (FEED) --- */
+.coluna-meio {
+    background: white;
+    overflow-y: scroll;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+.coluna-meio::-webkit-scrollbar { width: 0px; background: transparent; }
+
+/* ARTES */
 .post-arte {
     width: 100%;
-    /* Isso impede que a imagem fique gigante em monitores grandes */
-    max-width: 650px; 
-    /* Isso centraliza a imagem no meio da coluna */
-    margin: 0 auto; 
-    /* Um pouco de margem lateral para não colar no canto em telas menores */
-    padding: 0 20px; 
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
+.post-arte img { width: 100%; height: auto; display: block; transition: opacity 0.2s; }
+.post-arte img:hover { opacity: 0.9; }
 
-.post-arte img {
-    width: 100%;
-    height: auto;
-    display: block;
-    /* Se quiser borda ou sombra suave, é aqui. Exemplo: */
-    /* box-shadow: 5px 5px 15px rgba(0,0,0,0.1); */
-}
-
-/* LEGENDA DA ARTE */
+/* LEGENDAS */
 .info-container {
     margin-top: 15px;
     display: flex;
@@ -95,103 +78,106 @@ a:hover {
     align-items: flex-start;
     font-size: 0.8rem;
 }
-
-.info-esq h2 {
-    font-size: 0.95rem;
-    font-weight: normal;
-    margin-bottom: 4px;
+.info-esq h2 { font-size: 0.95rem; font-weight: normal; margin-bottom: 4px; }
+.info-esq p { color: #666; font-size: 0.7rem; }
+.info-dir span, .botao-link {
+    background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; white-space: nowrap;
 }
+.botao-link { cursor: pointer; border: 1px solid transparent; }
+.botao-link:hover { background: #ddd; border-color: #ccc; text-decoration: none; }
 
-.info-esq p {
-    color: #666;
-    font-size: 0.7rem;
-}
-
-/* ESTILO DO BOTÃO/LINK */
-.info-dir span, 
-.botao-link {
-    background: #eee;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.65rem;
-    white-space: nowrap;
-}
-
-.botao-link {
-    cursor: pointer;
-    border: 1px solid transparent;
-}
-
-.botao-link:hover {
-    background: #ddd;
-    border-color: #ccc;
-    text-decoration: none;
-}
-
-/* --- 3. COLUNA DIREITA (MENU) --- */
+/* --- COLUNA DIREITA (MENU) --- */
 .coluna-direita {
     background-color: #e5e5e5;
     padding: 40px;
     font-size: 0.85rem;
     overflow-y: auto;
 }
+.coluna-direita ul { list-style: none; }
+.coluna-direita li { margin-bottom: 10px; }
 
-.coluna-direita ul {
-    list-style: none;
-}
-
-.coluna-direita li {
-    margin-bottom: 10px;
-}
-
-.coluna-direita a {
-    color: #333;
-}
-
-.coluna-direita a:hover {
+/* BOTÃO FECHAR MENU (SÓ MOBILE) */
+#btn-fechar-menu {
+    display: none; /* Escondido no desktop */
+    background: transparent;
+    border: none;
+    cursor: pointer;
     color: #000;
+    position: absolute;
+    top: 25px; /* Mesma altura do logo +-, ajusta se precisar */
+    left: 20px;
 }
 
-.separador {
-    height: 1px;
-    background: #bbb;
-    margin: 30px 0;
-    width: 100%;
+.menu-all { display: block; margin-bottom: 25px; }
+.ativo-bold { font-weight: bold; }
+.separador { height: 1px; background: #bbb; margin: 30px 0; width: 100%; }
+
+/* --- FULLSCREEN OVERLAY --- */
+#fullscreen-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.95); z-index: 5000;
+    display: flex; justify-content: center; align-items: center;
 }
+.escondido { display: none !important; }
+
+.btn-fechar {
+    position: absolute; top: 20px; right: 20px;
+    background: white; border: none; padding: 10px 20px;
+    font-family: inherit; font-weight: bold; cursor: pointer; z-index: 5002;
+}
+
+.fullscreen-track {
+    width: 100%; height: 100%;
+    overflow-y: scroll; scroll-snap-type: y mandatory;
+}
+.fullscreen-track::-webkit-scrollbar { width: 0; background: transparent; }
+
+.fullscreen-item {
+    width: 100%; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    scroll-snap-align: start; padding: 20px;
+}
+.fullscreen-item img { max-width: 100%; max-height: 95vh; object-fit: contain; }
+
+.seta-cima, .seta-baixo {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    color: white; font-size: 1.5rem; pointer-events: none; z-index: 5001;
+    animation: piscar 2s infinite;
+}
+.seta-cima { top: 20px; }
+.seta-baixo { bottom: 20px; }
+@keyframes piscar { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
 /* --- MOBILE --- */
 @media (max-width: 900px) {
-    body {
-        overflow: auto;
-    }
-
-    .site-container {
-        grid-template-columns: 1fr;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
+    body { overflow: auto; }
+    .site-container { display: block; }
 
     .coluna-esquerda {
         padding: 20px;
-        text-align: center;
         border-bottom: 1px solid #ddd;
+        flex-direction: row; 
+        align-items: center;
     }
+    .header-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
 
-    .coluna-meio {
-        padding: 40px 0;
-        overflow: visible;
-        gap: 60px;
-    }
+    /* Redes sociais somem no topo */
+    .social-links { display: none; } 
+
+    #btn-mobile { display: block; }
 
     .coluna-direita {
-        padding: 40px 20px;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: #e5e5e5; z-index: 1001;
+        display: none; 
+        padding-top: 80px; /* Espaço para o botão X */
         text-align: center;
-        order: 3;
     }
+    .coluna-direita.aberto { display: flex; flex-direction: column; align-items: center; }
     
-    .info-container {
-        flex-direction: column;
-        gap: 10px;
-    }
+    /* Botão X aparece */
+    #btn-fechar-menu { display: block; }
+
+    .coluna-meio { padding: 40px 0; gap: 60px; }
+    .info-container { flex-direction: column; gap: 10px; }
 }

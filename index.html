@@ -9,31 +9,65 @@
 <body>
 
     <div class="site-container">
-        <!-- COLUNA 1: IDENTIDADE -->
+        <!-- COLUNA 1: IDENTIDADE + BOTÃO MOBILE -->
         <header class="coluna-esquerda">
-            <h1 class="logo"><a href="index.html">Qab Lima</a></h1>
-            <span class="handle">@qabqabqab</span>
+            <div class="header-top">
+                <div>
+                    <h1 class="logo"><a href="index.html">Qab Lima</a></h1>
+                </div>
+                <!-- BOTÃO HAMBURGER (SÓ MOBILE) -->
+                <button id="btn-mobile" onclick="abrirMenuMobile()" aria-label="Abrir Menu">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- REDES SOCIAIS -->
+            <div class="social-links">
+                <a href="https://instagram.com/qabqabqabqabqab" target="_blank" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://x.com/qabqabqab" target="_blank" title="X (Twitter)">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <!-- PLACEHOLDERS (Pode mandar os códigos depois que eu atualizo!) -->
+                <a href="https://zora.co/@qabqabqab" target="_blank" title="Zora"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg></a>
+                <a href="https://farcaster.xyz/qabqabqab" target="_blank" title="Farcaster"><svg viewBox="0 0 24 24"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16zm-1 5h2v6h-2V9zm0-2h2v2h-2V7z"/></svg></a>
+                <a href="https://base.app/profile/0x802250f10992B6ef60AC8C5eb783351AaD2Fff28" target="_blank" title="Base App"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></a>
+            </div>
         </header>
 
-        <!-- COLUNA 2: O FEED (Vazio, será preenchido automaticamente pelo código lá embaixo) -->
+        <!-- COLUNA 2: O FEED -->
         <main class="coluna-meio" id="feed-artes">
-            <!-- As imagens aparecem aqui magicamente -->
+            <!-- JS preenche aqui -->
         </main>
 
         <!-- COLUNA 3: MENU -->
-        <nav class="coluna-direita">
+        <nav class="coluna-direita" id="menu-principal">
+            
+            <!-- BOTÃO FECHAR MENU (SÓ APARECE NO MOBILE QUANDO ABERTO) -->
+            <button id="btn-fechar-menu" onclick="fecharMenuMobile()" aria-label="Fechar Menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
             <ul id="menu-categorias">
-                <li><a href="#" onclick="filtrar('all')">all</a></li>
-                <!-- Categorias -->
-                <li><a href="#" onclick="filtrar('paintings')">paintings</a></li>
-                <li><a href="#" onclick="filtrar('digital illustration')">digital illustration</a></li>
-                <li><a href="#" onclick="filtrar('sketchbooks')">sketchbooks</a></li>
-                <li><a href="#" onclick="filtrar('3D')">3D</a></li>
-                <li><a href="#" onclick="filtrar('sculpture')">sculpture</a></li>
-                <li><a href="#" onclick="filtrar('music')">music</a></li>
-                <li><a href="#" onclick="filtrar('2D animation')">2D animation</a></li>
-                <li><a href="#" onclick="filtrar('pixel art')">pixel art</a></li>
-                <li><a href="#" onclick="filtrar('skateboard')">skateboard</a></li>
+                <li><a href="#" id="link-todos" class="menu-link menu-all" onclick="filtrar('todos'); fecharMenuMobile()">all</a></li>
+                
+                <li><a href="#" id="link-paintings" class="menu-link" onclick="filtrar('paintings'); fecharMenuMobile()">paintings</a></li>
+                <li><a href="#" id="link-digital-illustration" class="menu-link" onclick="filtrar('digital illustration'); fecharMenuMobile()">digital illustration</a></li>
+                <li><a href="#" id="link-sketchbooks" class="menu-link" onclick="filtrar('sketchbooks'); fecharMenuMobile()">sketchbooks</a></li>
+                <li><a href="#" id="link-3D" class="menu-link" onclick="filtrar('3D'); fecharMenuMobile()">3D</a></li>
+                <li><a href="#" id="link-sculpture" class="menu-link" onclick="filtrar('sculpture'); fecharMenuMobile()">sculpture</a></li>
+                <li><a href="#" id="link-music" class="menu-link" onclick="filtrar('music'); fecharMenuMobile()">music</a></li>
+                <li><a href="#" id="link-2D-animation" class="menu-link" onclick="filtrar('2D animation'); fecharMenuMobile()">2D animation</a></li>
+                <li><a href="#" id="link-pixel-art" class="menu-link" onclick="filtrar('pixel art'); fecharMenuMobile()">pixel art</a></li>
+                <li><a href="#" id="link-skateboard" class="menu-link" onclick="filtrar('skateboard'); fecharMenuMobile()">skateboard</a></li>
             </ul>
             
             <div class="separador"></div>
@@ -47,18 +81,37 @@
         </nav>
     </div>
 
-    <!-- --- AQUI COMEÇA A PROGRAMAÇÃO --- -->
-    
-    <!-- 1. Importa suas artes do arquivo dados.js -->
+    <!-- OVERLAY FULLSCREEN -->
+    <div id="fullscreen-overlay" class="escondido">
+        <!-- JS trata o clique aqui para fechar -->
+        <button class="btn-fechar" onclick="fecharFullscreen()">X CLOSE</button>
+        <div class="seta-cima">▲</div>
+        <div class="seta-baixo">▼</div>
+        <div id="fullscreen-scroll" class="fullscreen-track">
+            <!-- Imagens -->
+        </div>
+    </div>
+
     <script src="dados.js"></script>
 
-    <!-- 2. O Código que faz tudo funcionar -->
     <script>
-        // Referência ao lugar onde as imagens vão aparecer
         const feedContainer = document.getElementById('feed-artes');
+        let listaAtual = []; 
 
-        // --- FUNÇÃO QUE EMBARALHA (MATEMÁTICA PURA) ---
-        // É isso aqui que garante que seu site sempre abra diferente
+        // --- MENU MOBILE ---
+        function abrirMenuMobile() {
+            const menu = document.getElementById('menu-principal');
+            menu.classList.add('aberto');
+            document.body.style.overflow = 'hidden'; // Trava rolagem
+        }
+
+        function fecharMenuMobile() {
+            const menu = document.getElementById('menu-principal');
+            menu.classList.remove('aberto');
+            document.body.style.overflow = 'auto'; // Destrava
+        }
+
+        // --- ALEATÓRIO E RENDER ---
         function embaralhar(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -67,32 +120,26 @@
             return array;
         }
 
-        // --- FUNÇÃO QUE DESENHA NA TELA ---
         function renderizarFeed(lista) {
-            feedContainer.innerHTML = ''; // Limpa o feed antes de começar
-            
-            lista.forEach(arte => {
+            feedContainer.innerHTML = ''; 
+            listaAtual = lista; 
+
+            lista.forEach((arte, index) => {
                 const item = document.createElement('article');
                 item.className = 'post-arte';
                 
-                // LÓGICA DO LINK (Aquele ajuste que fizemos):
                 let tagExtra = '';
-                
                 if (arte.extra) {
-                    // Se tiver escrito E tiver link, cria botão clicável
                     if (arte.linkExterno) {
                         tagExtra = `<div class="info-dir"><a href="${arte.linkExterno}" target="_blank" class="botao-link">+ ${arte.extra}</a></div>`;
-                    } 
-                    // Se só tiver escrito (sem link), cria apenas o texto visual
-                    else {
+                    } else {
                         tagExtra = `<div class="info-dir"><span>+ ${arte.extra}</span></div>`;
                     }
                 }
 
-                // Monta o HTML final daquela arte
                 item.innerHTML = `
-                    <div class="imagem-container">
-                        <img src="${arte.arquivo}" alt="${arte.titulo}">
+                    <div class="imagem-container" onclick="abrirFullscreen(${index})">
+                        <img src="${arte.arquivo}" alt="${arte.titulo}" style="cursor: zoom-in;">
                     </div>
                     <div class="info-container">
                         <div class="info-esq">
@@ -106,24 +153,74 @@
             });
         }
 
-        // --- INICIALIZAÇÃO ---
-        // Assim que o site abre, ele pega suas artes, EMBARALHA e desenha.
-        // O "minhasArtes" vem lá do arquivo dados.js
-        if (typeof minhasArtes !== 'undefined') {
-            const artesEmbaralhadas = embaralhar([...minhasArtes]);
-            renderizarFeed(artesEmbaralhadas);
-        } else {
-            console.error("Erro: Não encontrei suas artes. Verifique se o arquivo dados.js está na mesma pasta.");
-        }
-
-        // --- FILTROS DO MENU ---
+        // --- FILTROS ---
         function filtrar(categoria) {
-            if(categoria === 'all') {
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
+            let idParaAtivar = 'link-' + categoria.replace(' ', '-');
+            if (categoria === 'todos') idParaAtivar = 'link-todos';
+            const linkAtivo = document.getElementById(idParaAtivar);
+            if(linkAtivo) linkAtivo.classList.add('ativo-bold');
+
+            if(categoria === 'todos') {
                 renderizarFeed(embaralhar([...minhasArtes]));
             } else {
                 const filtradas = minhasArtes.filter(a => a.categoria === categoria);
                 renderizarFeed(embaralhar(filtradas));
             }
+            window.scrollTo(0,0);
+        }
+
+        // --- FULLSCREEN ---
+        const overlay = document.getElementById('fullscreen-overlay');
+        const scrollTrack = document.getElementById('fullscreen-scroll');
+
+        function abrirFullscreen(indexClicado) {
+            scrollTrack.innerHTML = ''; 
+            
+            listaAtual.forEach((arte, i) => {
+                const div = document.createElement('div');
+                div.className = 'fullscreen-item';
+                div.id = `fs-item-${i}`;
+                div.innerHTML = `<img src="${arte.arquivo}" alt="${arte.titulo}">`;
+                scrollTrack.appendChild(div);
+            });
+
+            overlay.classList.remove('escondido');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                const alvo = document.getElementById(`fs-item-${indexClicado}`);
+                if (alvo) alvo.scrollIntoView({ behavior: 'auto' });
+            }, 10);
+        }
+
+        function fecharFullscreen() {
+            overlay.classList.add('escondido');
+            document.body.style.overflow = 'auto';
+        }
+
+        // FECHAR COM ESCAPE
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !overlay.classList.contains('escondido')) {
+                fecharFullscreen();
+            }
+        });
+
+        // FECHAR CLICANDO FORA (BACKDROP)
+        overlay.addEventListener('click', (e) => {
+            // Se o clique NÃO foi numa imagem (ou seja, foi no fundo preto)
+            if (e.target.tagName !== 'IMG') {
+                fecharFullscreen();
+            }
+        });
+
+        // INICIALIZAÇÃO
+        if (typeof minhasArtes !== 'undefined') {
+            const inicial = embaralhar([...minhasArtes]);
+            renderizarFeed(inicial);
+            document.getElementById('link-todos').classList.add('ativo-bold');
+        } else {
+            console.error("Erro: arquivo dados.js não encontrado.");
         }
     </script>
 </body>
