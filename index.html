@@ -249,20 +249,20 @@
             scrollTrack.innerHTML = ''; 
             
             listaAtual.forEach((arte, i) => {
-                // Se for 3D, a gente pula (não mostra no fullscreen pra não pesar)
+                // Se for 3D, a gente pula (não mostra no fullscreen)
                 if (arte.tipo === '3d') return;
 
                 const div = document.createElement('div');
                 div.className = 'fullscreen-item';
                 div.id = `fs-item-${i}`;
                 
-                // Se for VÍDEO no Fullscreen: Com som e Controles
+                // Se for VÍDEO no Fullscreen
                 if (arte.tipo === 'video') {
+                    // TIREI O 'autoplay' DAQUI. Agora só toca se clicar.
                     div.innerHTML = `
                         <video 
                             src="${arte.arquivo}" 
                             controls 
-                            autoplay 
                             loop 
                             style="max-width: 100%; max-height: 95vh;"
                         ></video>`;
@@ -284,7 +284,6 @@
                 if (alvo) alvo.scrollIntoView({ behavior: 'auto' });
             }, 10);
         }
-
         function fecharFullscreen() {
             overlay.classList.add('escondido');
             document.body.style.overflow = 'auto';
