@@ -46,5 +46,23 @@ const minhasArtes = [
     tipo: "3d",
     linkExterno: "https://opensea.io/item/zora/0x281a77222a49b30acecc907cdc97f0109345784b/"
 },
+{
+  titulo: "junção de pensamentos",
+    categoria: "sketchbooks",
+    info: "ink & crayon on paper, 2022",
+    arquivo: "imagens/arte4-sketchbook1.jpg",
+    extra: "posted on Objkt",
+    tipo: "imagem",
+    linkExterno: "https://objkt.com/tokens/KT1LB2YfnrbGsL1ZNzLxDoQNrj5xhYa4EK3r/0"
+},
+{
+  titulo: "I ❤️ skateboarding",
+    categoria: "skateboard",
+    info: "in DZ7, São Paulo - Brasil",
+    arquivo: "imagens/skateboard1.mp4",
+    extra: "posted on Zora",
+    tipo: "video",
+    linkExterno: "https://zora.co/coin/base:0x0f345eed05ae0aa832d5486ec5fabc7c8c27336b?referrer=0x4084cb24f8a4b9945a41c641e8d55a39216f109c"
+},
 
 ];
