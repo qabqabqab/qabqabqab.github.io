@@ -66,12 +66,30 @@ const minhasArtes = [
 },
 {
   titulo: "marbie princess slide",
-    categoria: "2D-animation",
+    categoria: "2D animation",
     info: "procreate, 2024",
     arquivo: "imagens/gif1.gif",
-    extra: "posted on Objkt",
+    extra: "posted on Zora",
     tipo: "imagem",
     linkExterno: "https://objkt.com/tokens/KT1Gj71kLWX59aXv5L6u5a16bgmHkEfLHVCn/40"
 },
+{
+  titulo: "don’t hurt me or I’ll hurt u back",
+    categoria: "digital illustration",
+    info: "procreate, 2024",
+    arquivo: "imagens/digitalillustration1.jpg",
+    extra: "posted on Zora",
+    tipo: "imagem",
+    linkExterno: "https://zora.co/coin/base:0x8e953a660b9a0494713ec09e2cea861d614fc6a2?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
+},
+{
+  titulo: "xaeuzin",
+    categoria: "3d",
+    info: "blender, 2023",
+    arquivo: "imagens/xaeuzin.glb",
+    extra: "posted on Zora",
+    tipo: "3d",
+    linkExterno: "https://zora.co/collect/zora:0xfce118087eae6baeabeef054fcf25221cecadba2/4?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
+}
 
 ];

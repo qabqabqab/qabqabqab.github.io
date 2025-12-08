@@ -4,86 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qab Lima</title>
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="estilo.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="imagens/favicon.png">
+    
+    <!-- Leitor 3D do Google -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
 
     <div class="site-container">
-        <!-- COLUNA 1: IDENTIDADE + BOTÃO MOBILE -->
+        <!-- COLUNA 1: IDENTIDADE -->
         <header class="coluna-esquerda">
             <div class="header-top">
                 <div>
                     <h1 class="logo"><a href="index.html">Qab Lima</a></h1>
                 </div>
-                <!-- BOTÃO HAMBURGER (SÓ MOBILE) -->
+                <!-- BOTÃO MOBILE -->
                 <button id="btn-mobile" onclick="abrirMenuMobile()" aria-label="Abrir Menu">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                 </button>
             </div>
 
-            <!-- REDES SOCIAIS -->
+            <!-- REDES SOCIAIS (ICONOGRAFIA CORRETA) -->
             <div class="social-links">
-                
                 <!-- Instagram -->
                 <a href="https://instagram.com/qabqabqabqabqab" target="_blank" title="Instagram">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                
-                <!-- X / Twitter -->
+                <!-- X -->
                 <a href="https://x.com/qabqabqab" target="_blank" title="X">
                     <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                
-                <!-- Zora (Luz na Direita Superior) -->
+                <!-- Zora -->
                 <a href="https://zora.co/@qabqabqab" target="_blank" title="Zora">
-                    <svg viewBox="0 0 24 24">
-                        <defs>
-                            <radialGradient id="zoraGradRight" cx="70%" cy="25%" r="65%">
-                                <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 1" />
-                                <stop offset="100%" style="stop-color: #000000; stop-opacity: 1" />
-                            </radialGradient>
-                        </defs>
-                        <circle cx="12" cy="12" r="10" fill="url(#zoraGradRight)"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><defs><radialGradient id="zoraGradRight" cx="70%" cy="25%" r="65%"><stop offset="0%" style="stop-color: #ffffff; stop-opacity: 1" /><stop offset="100%" style="stop-color: #000000; stop-opacity: 1" /></radialGradient></defs><circle cx="12" cy="12" r="10" fill="url(#zoraGradRight)"/></svg>
                 </a>
-                
-                <!-- Farcaster (SEU ARQUIVO SVG ORIGINAL) -->
+                <!-- Farcaster -->
                 <a href="https://farcaster.xyz/qabqabqab" target="_blank" title="Farcaster">
-                    <!-- Note que mudei o viewBox para 0 0 1000 1000 para caber o seu desenho -->
-                    <svg viewBox="0 0 1000 1000">
-                        <path d="M885.67,162.08v90.43h-92.85v89.24c2.09,3.4,4.74,3.28,8.21,3.69,26.03,3.05,57.93-2.51,84.63-.12v492.6l-152.05-.31-79.58-373.79c-44.79-161.75-263.26-161.88-308.09,0l-79.26,374.1H114.33v-492.6h89.27l3.57-3.57v-89.24h-92.85v-90.43h771.34Z"/>
-                    </svg>
+                    <svg viewBox="0 0 1000 1000"><path d="M885.67,162.08v90.43h-92.85v89.24c2.09,3.4,4.74,3.28,8.21,3.69,26.03,3.05,57.93-2.51,84.63-.12v492.6l-152.05-.31-79.58-373.79c-44.79-161.75-263.26-161.88-308.09,0l-79.26,374.1H114.33v-492.6h89.27l3.57-3.57v-89.24h-92.85v-90.43h771.34Z"/></svg>
                 </a>
-                
-                <!-- Base App (Quadrado Arredondado) -->
+                <!-- Base -->
                 <a href="https://base.app/profile/0x802250f10992B6ef60AC8C5eb783351AaD2Fff28" target="_blank" title="Base App">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="2" y="2" width="20" height="20" rx="5" />
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" /></svg>
                 </a>
-
             </div>
         </header>
 
         <!-- COLUNA 2: O FEED -->
         <main class="coluna-meio" id="feed-artes">
-            <!-- JS preenche aqui -->
+            <!-- As imagens aparecem aqui magicamente via JS -->
         </main>
 
         <!-- COLUNA 3: MENU -->
         <nav class="coluna-direita" id="menu-principal">
-            
-            <!-- BOTÃO FECHAR MENU (SÓ APARECE NO MOBILE QUANDO ABERTO) -->
             <button id="btn-fechar-menu" onclick="fecharMenuMobile()" aria-label="Fechar Menu">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
 
             <ul id="menu-categorias">
@@ -92,7 +70,10 @@
                 <li><a href="#" id="link-paintings" class="menu-link" onclick="filtrar('paintings'); fecharMenuMobile()">paintings</a></li>
                 <li><a href="#" id="link-digital-illustration" class="menu-link" onclick="filtrar('digital illustration'); fecharMenuMobile()">digital illustration</a></li>
                 <li><a href="#" id="link-sketchbooks" class="menu-link" onclick="filtrar('sketchbooks'); fecharMenuMobile()">sketchbooks</a></li>
+                
+                <!-- CORRIGIDO: id="link-3d" e filtrar('3d') -->
                 <li><a href="#" id="link-3d" class="menu-link" onclick="filtrar('3d'); fecharMenuMobile()">3D</a></li>
+                
                 <li><a href="#" id="link-sculpture" class="menu-link" onclick="filtrar('sculpture'); fecharMenuMobile()">sculpture</a></li>
                 <li><a href="#" id="link-music" class="menu-link" onclick="filtrar('music'); fecharMenuMobile()">music</a></li>
                 <li><a href="#" id="link-2D-animation" class="menu-link" onclick="filtrar('2D animation'); fecharMenuMobile()">2D animation</a></li>
@@ -113,25 +94,22 @@
 
     <!-- OVERLAY FULLSCREEN -->
     <div id="fullscreen-overlay" class="escondido">
-        <!-- JS trata o clique aqui para fechar -->
         <button class="btn-fechar" onclick="fecharFullscreen()">X CLOSE</button>
         <div class="seta-cima">▲</div>
         <div class="seta-baixo">▼</div>
         <div id="fullscreen-scroll" class="fullscreen-track">
-            <!-- Imagens -->
+            <!-- JS preenche aqui -->
         </div>
     </div>
 
-    <!-- 1. Importa suas artes -->
+    <!-- 1. Importa os dados -->
     <script src="dados.js"></script>
 
-    <!-- 2. Importa o Leitor de 3D do Google -->
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-
-    <!-- 3. Programação do Site -->
-    <script>
+    <!-- 2. Programação Lógica -->
+   <script>
         const feedContainer = document.getElementById('feed-artes');
         let listaAtual = []; 
+        let observerVideos; 
 
         // --- MENU MOBILE ---
         function abrirMenuMobile() {
@@ -146,7 +124,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- ALEATÓRIO E RENDER ---
+        // --- ALEATÓRIO ---
         function embaralhar(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -155,6 +133,7 @@
             return array;
         }
 
+        // --- RENDERIZAR FEED ---
         function renderizarFeed(lista) {
             feedContainer.innerHTML = ''; 
             listaAtual = lista; 
@@ -163,7 +142,6 @@
                 const item = document.createElement('article');
                 item.className = 'post-arte';
                 
-                // Botão de Link (+ minted on...)
                 let tagExtra = '';
                 if (arte.extra) {
                     if (arte.linkExterno) {
@@ -173,35 +151,25 @@
                     }
                 }
 
-                // --- LÓGICA DE MÍDIA (IMAGEM vs VÍDEO vs 3D) ---
                 let midiaHTML = '';
 
-                // CASO 1: VÍDEO
+                // FEED: VÍDEO
                 if (arte.tipo === 'video') {
-                    // Feed: Autoplay, Mudo, Loop, Sem controles (Estética Clean)
                     midiaHTML = `
                         <div class="imagem-container" onclick="abrirFullscreen(${index})">
                             <video src="${arte.arquivo}" autoplay loop muted playsinline style="width: 100%; display: block; cursor: zoom-in;"></video>
                         </div>
                     `;
                 }
-                // CASO 2: 3D (.glb)
+                // FEED: 3D (Mantive sem onclick pra poder girar no feed)
                 else if (arte.tipo === '3d') {
-                    // Feed: Interativo (gira), Sombra, Fundo cinza claro
-                    // Nota: Não tem onclick="abrirFullscreen" pq 3D fica só no feed
                     midiaHTML = `
                         <div class="imagem-container" style="height: 500px; background: #f0f0f0; cursor: grab;">
-                            <model-viewer 
-                                src="${arte.arquivo}" 
-                                auto-rotate 
-                                camera-controls 
-                                shadow-intensity="1"
-                                style="width: 100%; height: 100%;"
-                            ></model-viewer>
+                            <model-viewer src="${arte.arquivo}" auto-rotate camera-controls shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>
                         </div>
                     `;
                 }
-                // CASO 3: IMAGEM (Padrão)
+                // FEED: IMAGEM
                 else {
                     midiaHTML = `
                         <div class="imagem-container" onclick="abrirFullscreen(${index})">
@@ -241,7 +209,7 @@
             window.scrollTo(0,0);
         }
 
-        // --- FULLSCREEN (AGORA SUPORTA VÍDEO) ---
+        // --- FULLSCREEN (AGORA COM 3D LIBERADO) ---
         const overlay = document.getElementById('fullscreen-overlay');
         const scrollTrack = document.getElementById('fullscreen-scroll');
 
@@ -249,16 +217,14 @@
             scrollTrack.innerHTML = ''; 
             
             listaAtual.forEach((arte, i) => {
-                // Se for 3D, a gente pula (não mostra no fullscreen)
-                if (arte.tipo === '3d') return;
+                // APAGUEI A LINHA QUE BLOQUEAVA O 3D AQUI!
 
                 const div = document.createElement('div');
                 div.className = 'fullscreen-item';
                 div.id = `fs-item-${i}`;
                 
-                // Se for VÍDEO no Fullscreen
+                // Opção 1: VÍDEO
                 if (arte.tipo === 'video') {
-                    // TIREI O 'autoplay' DAQUI. Agora só toca se clicar.
                     div.innerHTML = `
                         <video 
                             src="${arte.arquivo}" 
@@ -267,36 +233,80 @@
                             style="max-width: 100%; max-height: 95vh;"
                         ></video>`;
                 } 
-                // Se for IMAGEM no Fullscreen
+                // Opção 2: 3D (NOVIDADE AQUI)
+                else if (arte.tipo === '3d') {
+                    div.innerHTML = `
+                        <model-viewer 
+                            src="${arte.arquivo}" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1" 
+                            style="width: 100%; height: 95vh;"
+                        ></model-viewer>`;
+                }
+                // Opção 3: IMAGEM
                 else {
                     div.innerHTML = `<img src="${arte.arquivo}" alt="${arte.titulo}">`;
                 }
-
                 scrollTrack.appendChild(div);
             });
 
+            // Animação de entrada
+            overlay.style.opacity = '0';
             overlay.classList.remove('escondido');
             document.body.style.overflow = 'hidden';
 
-            // Pequeno delay pra rolar até o item certo
+            const alvo = document.getElementById(`fs-item-${indexClicado}`);
+            if (alvo) alvo.scrollIntoView({ behavior: 'auto' });
+
+            iniciarObserver();
+
             setTimeout(() => {
-                const alvo = document.getElementById(`fs-item-${indexClicado}`);
-                if (alvo) alvo.scrollIntoView({ behavior: 'auto' });
-            }, 10);
-        }
-        function fecharFullscreen() {
-            overlay.classList.add('escondido');
-            document.body.style.overflow = 'auto';
-            // Para todos os vídeos quando fechar (pra não ficar som tocando no fundo)
-            scrollTrack.innerHTML = ''; 
+                overlay.style.opacity = '1';
+            }, 50);
         }
 
-        // Tecla ESC e Clique Fora
+        function fecharFullscreen() {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.classList.add('escondido');
+                document.body.style.overflow = 'auto';
+                
+                if (observerVideos) observerVideos.disconnect();
+                scrollTrack.querySelectorAll('video').forEach(v => v.pause());
+                scrollTrack.innerHTML = ''; 
+            }, 300);
+        }
+
+        // --- AUTOPLAY INTELIGENTE ---
+        function iniciarObserver() {
+            if (observerVideos) observerVideos.disconnect();
+            const opcoes = { root: scrollTrack, threshold: 0.6 };
+
+            observerVideos = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target.tagName === 'VIDEO') {
+                        if (entry.isIntersecting) {
+                            entry.target.play().catch(e => console.log("Autoplay bloqueado"));
+                        } else {
+                            entry.target.pause();
+                        }
+                    }
+                });
+            }, opcoes);
+
+            scrollTrack.querySelectorAll('video').forEach(video => {
+                observerVideos.observe(video);
+            });
+        }
+
+        // EVENTOS GLOBAIS
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !overlay.classList.contains('escondido')) fecharFullscreen();
         });
         overlay.addEventListener('click', (e) => {
-            if (e.target.tagName !== 'IMG' && e.target.tagName !== 'VIDEO') fecharFullscreen();
+            // Se clicar fora da imagem/video/model-viewer, fecha
+            if (e.target.tagName !== 'IMG' && e.target.tagName !== 'VIDEO' && e.target.tagName !== 'MODEL-VIEWER') fecharFullscreen();
         });
 
         // INICIALIZAÇÃO
