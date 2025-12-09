@@ -234,6 +234,7 @@
                         ></video>`;
                 } 
                 // Opção 2: 3D (NOVIDADE AQUI)
+                // Opção 2: 3D (COM BORDAS PARA PODER ROLAR A TELA)
                 else if (arte.tipo === '3d') {
                     div.innerHTML = `
                         <model-viewer 
@@ -241,7 +242,7 @@
                             auto-rotate 
                             camera-controls 
                             shadow-intensity="1" 
-                            style="width: 100%; height: 95vh;"
+                            style="width: 80%; height: 70vh; margin: 0 auto;"
                         ></model-viewer>`;
                 }
                 // Opção 3: IMAGEM
