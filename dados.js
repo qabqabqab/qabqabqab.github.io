@@ -90,6 +90,33 @@ const minhasArtes = [
     extra: "posted on Zora",
     tipo: "3d",
     linkExterno: "https://zora.co/collect/zora:0xfce118087eae6baeabeef054fcf25221cecadba2/4?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
-}
+},
+{
+  titulo: "punkixel is not dead",
+    categoria: "pixel art",
+    info: "aseprite, 2025",
+    arquivo: "imagens/pixelart1.png",
+    extra: "posted on Zora",
+    tipo: "imagem",
+    linkExterno: "https://zora.co/coin/base:0x43ae68ac2b5faabeeb78458a976ea32a181ff174?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
+},
+{
+  titulo: "don't kill my vibe",
+    categoria: "pixel art",
+    info: "aseprite, 2025",
+    arquivo: "imagens/pixelart2.png",
+    extra: "posted on Zora",
+    tipo: "imagem",
+    linkExterno: "https://zora.co/coin/base:0xf452248742d5f0acc89c0594c2e43ff1762197f1?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
+},
+{
+  titulo: "listening to my favorite songs heals my soul",
+    categoria: "pixel art",
+    info: "aseprite, 2025",
+    arquivo: "imagens/pixelart3.png",
+    extra: "posted on Zora",
+    tipo: "imagem",
+    linkExterno: "https://zora.co/coin/base:0x30fff24e89b259df799bff4900a71bc556458d67?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
+},
 
 ];
