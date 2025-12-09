@@ -92,11 +92,14 @@
         </nav>
     </div>
 
-    <!-- OVERLAY FULLSCREEN -->
+    <!-- OVERLAY FULLSCREEN (COM SETAS CLICÁVEIS) -->
     <div id="fullscreen-overlay" class="escondido">
         <button class="btn-fechar" onclick="fecharFullscreen()">X CLOSE</button>
-        <div class="seta-cima">▲</div>
-        <div class="seta-baixo">▼</div>
+        
+        <!-- Adicionei o onclick aqui -->
+        <div class="seta-cima" onclick="navegarFullscreen(-1)">▲</div>
+        <div class="seta-baixo" onclick="navegarFullscreen(1)">▼</div>
+        
         <div id="fullscreen-scroll" class="fullscreen-track">
             <!-- JS preenche aqui -->
         </div>
@@ -106,25 +109,24 @@
     <script src="dados.js"></script>
 
     <!-- 2. Programação Lógica -->
-   <script>
+    <script>
         const feedContainer = document.getElementById('feed-artes');
         let listaAtual = []; 
         let observerVideos; 
 
-        // --- MENU MOBILE ---
+        // MENU MOBILE
         function abrirMenuMobile() {
             const menu = document.getElementById('menu-principal');
             menu.classList.add('aberto');
             document.body.style.overflow = 'hidden';
         }
-
         function fecharMenuMobile() {
             const menu = document.getElementById('menu-principal');
             menu.classList.remove('aberto');
             document.body.style.overflow = 'auto';
         }
 
-        // --- ALEATÓRIO ---
+        // ALEATÓRIO
         function embaralhar(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -133,7 +135,7 @@
             return array;
         }
 
-        // --- RENDERIZAR FEED ---
+        // RENDERIZAR FEED
         function renderizarFeed(lista) {
             feedContainer.innerHTML = ''; 
             listaAtual = lista; 
@@ -152,30 +154,21 @@
                 }
 
                 let midiaHTML = '';
-
-                // FEED: VÍDEO
                 if (arte.tipo === 'video') {
                     midiaHTML = `
                         <div class="imagem-container" onclick="abrirFullscreen(${index})">
                             <video src="${arte.arquivo}" autoplay loop muted playsinline style="width: 100%; display: block; cursor: zoom-in;"></video>
-                        </div>
-                    `;
-                }
-                // FEED: 3D (Mantive sem onclick pra poder girar no feed)
-                else if (arte.tipo === '3d') {
+                        </div>`;
+                } else if (arte.tipo === '3d') {
                     midiaHTML = `
                         <div class="imagem-container" style="height: 500px; background: #f0f0f0; cursor: grab;">
                             <model-viewer src="${arte.arquivo}" auto-rotate camera-controls shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>
-                        </div>
-                    `;
-                }
-                // FEED: IMAGEM
-                else {
+                        </div>`;
+                } else {
                     midiaHTML = `
                         <div class="imagem-container" onclick="abrirFullscreen(${index})">
                             <img src="${arte.arquivo}" alt="${arte.titulo}" style="cursor: zoom-in;">
-                        </div>
-                    `;
+                        </div>`;
                 }
 
                 item.innerHTML = `
@@ -192,7 +185,7 @@
             });
         }
 
-        // --- FILTROS ---
+        // FILTROS
         function filtrar(categoria) {
             document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
             let idParaAtivar = 'link-' + categoria.replace(' ', '-');
@@ -209,7 +202,7 @@
             window.scrollTo(0,0);
         }
 
-        // --- FULLSCREEN (AGORA COM 3D LIBERADO) ---
+        // FULLSCREEN
         const overlay = document.getElementById('fullscreen-overlay');
         const scrollTrack = document.getElementById('fullscreen-scroll');
 
@@ -217,26 +210,17 @@
             scrollTrack.innerHTML = ''; 
             
             listaAtual.forEach((arte, i) => {
-                // APAGUEI A LINHA QUE BLOQUEAVA O 3D AQUI!
+                // APAGUEI A LINHA QUE BLOQUEAVA O 3D AQUI! (Já estava apagada, mantendo assim)
 
                 const div = document.createElement('div');
                 div.className = 'fullscreen-item';
                 div.id = `fs-item-${i}`;
                 
-                // Opção 1: VÍDEO
                 if (arte.tipo === 'video') {
-                    div.innerHTML = `
-                        <video 
-                            src="${arte.arquivo}" 
-                            controls 
-                            loop 
-                            style="max-width: 100%; max-height: 95vh;"
-                        ></video>`;
+                    div.innerHTML = `<video src="${arte.arquivo}" controls loop style="max-width: 100%; max-height: 95vh;"></video>`;
                 } 
-                // Opção 2: 3D (NOVIDADE AQUI)
-                // Opção 2: 3D (COM BORDAS PARA PODER ROLAR A TELA)
                 else if (arte.tipo === '3d') {
-                    div.innerHTML = `
+                     div.innerHTML = `
                         <model-viewer 
                             src="${arte.arquivo}" 
                             auto-rotate 
@@ -245,14 +229,12 @@
                             style="width: 65%; height: 55vh; margin: 0 auto;"
                         ></model-viewer>`;
                 }
-                // Opção 3: IMAGEM
                 else {
                     div.innerHTML = `<img src="${arte.arquivo}" alt="${arte.titulo}">`;
                 }
                 scrollTrack.appendChild(div);
             });
 
-            // Animação de entrada
             overlay.style.opacity = '0';
             overlay.classList.remove('escondido');
             document.body.style.overflow = 'hidden';
@@ -262,9 +244,7 @@
 
             iniciarObserver();
 
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-            }, 50);
+            setTimeout(() => { overlay.style.opacity = '1'; }, 50);
         }
 
         function fecharFullscreen() {
@@ -272,18 +252,29 @@
             setTimeout(() => {
                 overlay.classList.add('escondido');
                 document.body.style.overflow = 'auto';
-                
                 if (observerVideos) observerVideos.disconnect();
                 scrollTrack.querySelectorAll('video').forEach(v => v.pause());
                 scrollTrack.innerHTML = ''; 
             }, 300);
         }
 
-        // --- AUTOPLAY INTELIGENTE ---
+        // NAVEGAÇÃO PELAS SETAS
+        function navegarFullscreen(direcao) {
+            const alturaItem = window.innerHeight; 
+            const scrollAtual = scrollTrack.scrollTop;
+            const indiceAtual = Math.round(scrollAtual / alturaItem);
+            const proximoIndice = indiceAtual + direcao;
+            const itens = scrollTrack.children;
+
+            if (proximoIndice >= 0 && proximoIndice < itens.length) {
+                itens[proximoIndice].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // AUTOPLAY
         function iniciarObserver() {
             if (observerVideos) observerVideos.disconnect();
             const opcoes = { root: scrollTrack, threshold: 0.6 };
-
             observerVideos = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.target.tagName === 'VIDEO') {
@@ -295,22 +286,29 @@
                     }
                 });
             }, opcoes);
-
-            scrollTrack.querySelectorAll('video').forEach(video => {
-                observerVideos.observe(video);
-            });
+            scrollTrack.querySelectorAll('video').forEach(video => observerVideos.observe(video));
         }
 
         // EVENTOS GLOBAIS
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !overlay.classList.contains('escondido')) fecharFullscreen();
         });
+
+        // --- A CORREÇÃO DO BUG ESTÁ AQUI EMBAIXO ---
         overlay.addEventListener('click', (e) => {
-            // Se clicar fora da imagem/video/model-viewer, fecha
-            if (e.target.tagName !== 'IMG' && e.target.tagName !== 'VIDEO' && e.target.tagName !== 'MODEL-VIEWER') fecharFullscreen();
+            // Verifica se clicou em algo que NÃO deve fechar (Imagens, Vídeos, 3D OU AS SETAS)
+            if (e.target.tagName === 'IMG' || 
+                e.target.tagName === 'VIDEO' || 
+                e.target.tagName === 'MODEL-VIEWER' ||
+                e.target.classList.contains('seta-cima') || 
+                e.target.classList.contains('seta-baixo')) {
+                return; // Não faz nada (mantém aberto)
+            }
+            // Se clicou no fundo preto, fecha
+            fecharFullscreen();
         });
 
-        // INICIALIZAÇÃO
+        // INICIALIZA
         if (typeof minhasArtes !== 'undefined') {
             const inicial = embaralhar([...minhasArtes]);
             renderizarFeed(inicial);
