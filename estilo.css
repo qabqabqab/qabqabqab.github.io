@@ -30,7 +30,7 @@ a:hover { text-decoration: underline; }
 }
 .logo a { font-size: 1.4rem; font-weight: bold; letter-spacing: -1px; text-decoration: none; }
 
-/* Ícones Sociais */
+/* Ícones Sociais (DESKTOP) */
 .social-links {
     display: flex;
     gap: 15px; 
@@ -44,7 +44,7 @@ a:hover { text-decoration: underline; }
 #btn-mobile {
     display: none; /* Só aparece no celular */
     background: transparent;
-    border: none; /* Sem borda, bem clean */
+    border: none;
     cursor: pointer;
     color: #000;
 }
@@ -98,19 +98,22 @@ a:hover { text-decoration: underline; }
 
 /* BOTÃO FECHAR MENU (SÓ MOBILE) */
 #btn-fechar-menu {
-    display: none; /* Escondido no desktop */
+    display: none;
     background: transparent;
     border: none;
     cursor: pointer;
     color: #000;
     position: absolute;
-    top: 25px; /* Mesma altura do logo +-, ajusta se precisar */
+    top: 25px; 
     left: 20px;
 }
 
 .menu-all { display: block; margin-bottom: 25px; }
 .ativo-bold { font-weight: bold; }
 .separador { height: 1px; background: #bbb; margin: 30px 0; width: 100%; }
+
+/* Redes Sociais no Mobile (Escondido no Desktop) */
+.social-mobile-menu { display: none; }
 
 /* --- FULLSCREEN OVERLAY --- */
 #fullscreen-overlay {
@@ -140,35 +143,19 @@ a:hover { text-decoration: underline; }
 }
 .fullscreen-item img { max-width: 100%; max-height: 95vh; object-fit: contain; }
 
-/* SETAS INDICATIVAS (AGORA CLICÁVEIS) */
+/* SETAS INDICATIVAS */
 .seta-cima, .seta-baixo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 2rem; /* Aumentei um pouco pra ficar mais fácil clicar */
-    
-    /* A MUDANÇA TÁ AQUI Ó: */
-    pointer-events: auto; /* Agora aceita clique */
-    cursor: pointer;      /* Mãozinha */
-    padding: 10px;        /* Área de clique maior */
-    
+    position: absolute; left: 50%; transform: translateX(-50%);
+    color: white; font-size: 2rem; 
+    pointer-events: auto; cursor: pointer; padding: 10px;
     z-index: 5001;
     animation: piscar 2s infinite;
-    transition: transform 0.2s; /* Efeitinho ao clicar */
+    transition: transform 0.2s;
 }
-
-.seta-cima:active, .seta-baixo:active {
-    transform: translateX(-50%) scale(0.8); /* Diminui quando clica */
-}
-
+.seta-cima:active, .seta-baixo:active { transform: translateX(-50%) scale(0.8); }
 .seta-cima { top: 10px; }
 .seta-baixo { bottom: 10px; }
-
-@keyframes piscar {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
+@keyframes piscar { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
 /* --- MOBILE --- */
 @media (max-width: 900px) {
@@ -183,22 +170,39 @@ a:hover { text-decoration: underline; }
     }
     .header-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
 
-    /* Redes sociais somem no topo */
+    /* Esconde as redes do topo */
     .social-links { display: none; } 
 
     #btn-mobile { display: block; }
 
+    /* Estilo do Menu Aberto */
     .coluna-direita {
         position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
         background: #e5e5e5; z-index: 1001;
         display: none; 
-        padding-top: 80px; /* Espaço para o botão X */
+        padding-top: 80px; 
         text-align: center;
     }
-    .coluna-direita.aberto { display: flex; flex-direction: column; align-items: center; }
+    .coluna-direita.aberto { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        /* O "justify-content: center" centraliza os links na tela, 
+           mas como temos o margin-top: auto nos ícones, ele empurra os ícones pro final */
+        justify-content: center; 
+    }
     
-    /* Botão X aparece */
     #btn-fechar-menu { display: block; }
+
+    /* MOSTRA REDES NO RODAPÉ DO MENU */
+    .social-mobile-menu {
+        display: flex;
+        gap: 15px;
+        margin-top: auto; /* Empurra pro final */
+        padding-bottom: 40px; /* Espaço do chão */
+    }
+    .social-mobile-menu a { display: block; width: 24px; height: 24px; color: #000; }
+    .social-mobile-menu svg { width: 100%; height: 100%; fill: currentColor; }
 
     .coluna-meio { padding: 40px 0; gap: 60px; }
     .info-container { flex-direction: column; gap: 10px; }

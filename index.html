@@ -28,7 +28,7 @@
                 </button>
             </div>
 
-            <!-- REDES SOCIAIS (ICONOGRAFIA CORRETA) -->
+            <!-- REDES SOCIAIS (DESKTOP - CANTO ESQUERDO) -->
             <div class="social-links">
                 <!-- Instagram -->
                 <a href="https://instagram.com/qabqabqabqabqab" target="_blank" title="Instagram">
@@ -89,17 +89,38 @@
                 <li><a href="#">exhibitions</a></li>
                 <li><a href="#">tutorials</a></li>
             </ul>
+
+            <!-- NOVO: REDES SOCIAIS NO MENU MOBILE (LÁ EMBAIXO) -->
+            <div class="social-mobile-menu">
+                <!-- Instagram -->
+                <a href="https://instagram.com/qabqabqabqabqab" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <!-- X -->
+                <a href="https://x.com/qabqabqab" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <!-- Zora -->
+                <a href="https://zora.co/@qabqabqab" target="_blank">
+                    <svg viewBox="0 0 24 24"><defs><radialGradient id="zoraGradRight2" cx="70%" cy="25%" r="65%"><stop offset="0%" style="stop-color: #ffffff; stop-opacity: 1" /><stop offset="100%" style="stop-color: #000000; stop-opacity: 1" /></radialGradient></defs><circle cx="12" cy="12" r="10" fill="url(#zoraGradRight2)"/></svg>
+                </a>
+                <!-- Farcaster -->
+                <a href="https://farcaster.xyz/qabqabqab" target="_blank">
+                    <svg viewBox="0 0 1000 1000"><path d="M885.67,162.08v90.43h-92.85v89.24c2.09,3.4,4.74,3.28,8.21,3.69,26.03,3.05,57.93-2.51,84.63-.12v492.6l-152.05-.31-79.58-373.79c-44.79-161.75-263.26-161.88-308.09,0l-79.26,374.1H114.33v-492.6h89.27l3.57-3.57v-89.24h-92.85v-90.43h771.34Z"/></svg>
+                </a>
+                <!-- Base -->
+                <a href="https://base.app/profile/0x802250f10992B6ef60AC8C5eb783351AaD2Fff28" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" /></svg>
+                </a>
+            </div>
         </nav>
     </div>
 
-    <!-- OVERLAY FULLSCREEN (COM SETAS CLICÁVEIS) -->
+    <!-- OVERLAY FULLSCREEN -->
     <div id="fullscreen-overlay" class="escondido">
         <button class="btn-fechar" onclick="fecharFullscreen()">X CLOSE</button>
-        
-        <!-- Adicionei o onclick aqui -->
         <div class="seta-cima" onclick="navegarFullscreen(-1)">▲</div>
         <div class="seta-baixo" onclick="navegarFullscreen(1)">▼</div>
-        
         <div id="fullscreen-scroll" class="fullscreen-track">
             <!-- JS preenche aqui -->
         </div>
@@ -135,7 +156,7 @@
             return array;
         }
 
-        // RENDERIZAR FEED
+        // RENDER
         function renderizarFeed(lista) {
             feedContainer.innerHTML = ''; 
             listaAtual = lista; 
@@ -210,8 +231,6 @@
             scrollTrack.innerHTML = ''; 
             
             listaAtual.forEach((arte, i) => {
-                // APAGUEI A LINHA QUE BLOQUEAVA O 3D AQUI! (Já estava apagada, mantendo assim)
-
                 const div = document.createElement('div');
                 div.className = 'fullscreen-item';
                 div.id = `fs-item-${i}`;
@@ -289,22 +308,17 @@
             scrollTrack.querySelectorAll('video').forEach(video => observerVideos.observe(video));
         }
 
-        // EVENTOS GLOBAIS
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !overlay.classList.contains('escondido')) fecharFullscreen();
         });
-
-        // --- A CORREÇÃO DO BUG ESTÁ AQUI EMBAIXO ---
         overlay.addEventListener('click', (e) => {
-            // Verifica se clicou em algo que NÃO deve fechar (Imagens, Vídeos, 3D OU AS SETAS)
             if (e.target.tagName === 'IMG' || 
                 e.target.tagName === 'VIDEO' || 
                 e.target.tagName === 'MODEL-VIEWER' ||
                 e.target.classList.contains('seta-cima') || 
                 e.target.classList.contains('seta-baixo')) {
-                return; // Não faz nada (mantém aberto)
+                return; 
             }
-            // Se clicou no fundo preto, fecha
             fecharFullscreen();
         });
 
