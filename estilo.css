@@ -152,7 +152,112 @@ a:hover { text-decoration: underline; }
 .seta-baixo { bottom: 10px; }
 @keyframes piscar { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-/* --- MOBILE --- */
+
+/* --- NOVO: PLAYER DE MÚSICA & CATEGORIA --- */
+
+/* Categoria Clicável (Tipografia Fina) */
+.link-categoria-feed {
+    display: block;
+    font-weight: normal; /* Fina */
+    margin-top: 8px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+.link-categoria-feed:hover { text-decoration: underline; }
+
+/* Player Card */
+.audio-card {
+    display: flex;
+    flex-direction: row; 
+    width: 100%;
+    max-width: 650px; 
+    aspect-ratio: 2 / 1; 
+    background-color: #e5e5e5;
+    margin: 0 auto;
+    overflow: hidden; 
+}
+
+/* Força a imagem a ocupar 50% */
+.audio-card img.audio-capa {
+    width: 50% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.audio-interface {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0;
+}
+
+.btn-play-pause {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 60px; 
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 20px; 
+    z-index: 10;
+}
+
+.icon-play, .icon-pause {
+    width: 40px !important; 
+    height: 40px !important;
+    fill: black;
+    display: block;
+}
+
+.barra-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25px; /* Barra mais alta para clique fácil */
+    cursor: pointer;
+    background-color: #ccc; 
+    z-index: 10;
+    display: flex;
+    align-items: flex-end;
+}
+
+.barra-fundo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.barra-progresso {
+    width: 0%;
+    height: 100%;
+    background-color: #555; 
+    transition: width 0.1s linear;
+}
+
+.tempo-audio {
+    position: absolute;
+    bottom: 30px; 
+    right: 15px;
+    font-size: 0.75rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000;
+}
+
+
+/* --- MOBILE (SEU CÓDIGO SEGURO) --- */
 @media (max-width: 900px) {
     body { overflow: auto; }
     .site-container { display: block; }
@@ -185,6 +290,8 @@ a:hover { text-decoration: underline; }
         padding-top: 80px; 
         text-align: center;
     }
+    
+    /* Regra para abrir o menu (Do seu código seguro) */
     .coluna-direita.aberto { 
         display: flex; 
         flex-direction: column; 
@@ -194,12 +301,12 @@ a:hover { text-decoration: underline; }
     
     #btn-fechar-menu { display: block; }
 
-    /* ÍCONES COM MARGEM DE SEGURANÇA */
+    /* ÍCONES COM MARGEM DE SEGURANÇA (Do seu código seguro) */
     .social-mobile-menu {
         display: flex;
         gap: 15px;
         margin-top: auto; 
-        padding-bottom: 120px; /* BEM ALTO PRA FUGIR DA BARRA DO SAFARI */
+        padding-bottom: 120px; 
     }
     .social-mobile-menu a { display: block; width: 24px; height: 24px; color: #000; }
     .social-mobile-menu svg { width: 100%; height: 100%; fill: currentColor; }

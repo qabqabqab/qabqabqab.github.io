@@ -118,5 +118,15 @@ const minhasArtes = [
     tipo: "imagem",
     linkExterno: "https://zora.co/coin/base:0x30fff24e89b259df799bff4900a71bc556458d67?referrer=0x9904ceddba825a18bdf7e1984a886d23394ccbcc"
 },
+{
+    titulo: "I've only seen you in my dreams",
+    categoria: "music",
+    info: "logic pro, 2025",
+    arquivo: "audios/audio1.mp3", // O arquivo de áudio
+    capa: "imagens/capa-audio1.jpg",     // A imagem da capa (quadrada)
+    tipo: "audio",                      // Tipo novo
+    extra: "posted on Songcamp",
+    linkExterno: "https://song.camp/song/0x9106f9E6e67888d34b09419fB10Ce9bEeE05EA88?tokenId=1&chain=base"
+  },
 
 ];
