@@ -402,3 +402,93 @@ a:hover { text-decoration: underline; }
     
 }
 }
+/* --- PÁGINA EXHIBITIONS --- */
+.conteudo-exhibitions {
+    width: 100%;
+    max-width: 800px; /* Largura um pouco maior pra caber as 3 fotos */
+    margin: 0 auto;
+    padding: 0 40px; /* Respiro lateral */
+    display: none; /* Começa escondido */
+}
+
+.post-exhibition {
+    margin-bottom: 120px; /* Espaço entre uma exposição e outra */
+    width: 100%;
+    border-bottom: 1px solid #ccc; /* Uma linha fina separando (opcional, fica chic) */
+    padding-bottom: 60px;
+}
+
+.post-exhibition:last-child {
+    border-bottom: none;
+}
+
+.post-exhibition h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.post-exhibition p {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+/* --- A GALERIA DE IMAGENS (DESKTOP - 3 COLUNAS) --- */
+.galeria-exhibitions {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* Cria 3 colunas iguais */
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.galeria-exhibitions img {
+    /* A imagem agora obedece a largura da COLUNA do grid, não da tela */
+    width: 100%; 
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.galeria-exhibitions img:hover {
+    opacity: 0.8;
+}
+
+/* --- LINK "X Post" --- */
+.link-exhibition {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+}
+.link-exhibition:hover {
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 2px 5px;
+}
+
+/* AJUSTE MOBILE */
+@media (max-width: 900px) {
+    .conteudo-exhibitions {
+        padding: 0 25px;
+    }
+    
+    .galeria-exhibitions {
+        /* Muda para 2 colunas no celular */
+        grid-template-columns: 1fr 1fr; 
+    }
+
+    .galeria-exhibitions img {
+        height: 180px; /* Altura menor para celular */
+    }
+
+}

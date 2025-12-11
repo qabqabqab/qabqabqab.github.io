@@ -92,6 +92,32 @@
 
             </div>
 
+            <!-- 4. EXHIBITIONS (ESCONDIDO POR PADRÃO) -->
+            <div id="exhibitions-content" class="conteudo-exhibitions" style="display: none;">
+                
+                <!-- EXPOSIÇÃO 1 -->
+                <article class="post-exhibition">
+                    <h3>• ‘Absretratos’ exhibition | August, 2023</h3>
+                    <p>Solo exhibition of the collection of ‘absretratos’ paintings outdoors in the Vila Any neighborhood.</p>
+                    
+                    <!-- GALERIA DE FOTOS (LADO A LADO) -->
+                    <div class="galeria-exhibitions">
+                        <!-- Substitua pelos nomes dos seus arquivos -->
+                        <img src="imagens/exposicao1-foto1.jpg" alt="Foto" onclick="abrirExhibitionFeed(this)">
+                        <img src="imagens/exposicao1-foto2.jpg" alt="Foto" onclick="abrirExhibitionFeed(this)">
+                        <img src="imagens/exposicao1-foto3.jpg" alt="Foto" onclick="abrirExhibitionFeed(this)">
+                        <img src="imagens/exposicao1-foto4.jpg" alt="Foto" onclick="abrirExhibitionFeed(this)">
+                    </div>
+
+                    <!-- LINK CLICÁVEL -->
+                    <a href="https://x.com/qabqabqab/status/1690802293665378304" target="_blank" class="link-exhibition">X Post</a>
+                </article>
+
+                <!-- EXPOSIÇÃO 2 (EXEMPLO) -->
+                <!-- Copie e cole o article acima para adicionar mais -->
+
+            </div>
+
         </main>
 
         <!-- COLUNA 3: MENU -->
@@ -119,7 +145,7 @@
                 <!-- LINK ABOUT CHAMA A FUNÇÃO -->
                 <li><a href="#" id="link-about" class="menu-link" onclick="abrirAbout(); fecharMenuMobile()">about me</a></li>
                 <li><a href="#" id="link-interviews" class="menu-link" onclick="abrirInterviews(); fecharMenuMobile()">interviews</a></li>
-                <li><a href="#">exhibitions</a></li>
+                <li><a href="#" id="link-exhibitions" class="menu-link" onclick="abrirExhibitions(); fecharMenuMobile()">exhibitions</a></li>
                 <li><a href="#">tutorials</a></li>
             </ul>
 
@@ -149,36 +175,49 @@
     <script>
         const feedContainer = document.getElementById('feed-artes');
         const aboutContainer = document.getElementById('about-content');
-        const interviewsContainer = document.getElementById('interviews-content'); // NOVO
+        const interviewsContainer = document.getElementById('interviews-content');
+        const exhibitionsContainer = document.getElementById('exhibitions-content'); // NOVO
+        
         let listaAtual = []; 
         let observerVideos; 
         let audioAtual = null;
 
-        // --- NAVEGAÇÃO ENTRE PÁGINAS ---
+        // --- NAVEGAÇÃO (ATUALIZADA COM EXHIBITIONS) ---
 
-        // 1. Abrir Interviews (NOVO)
-        function abrirInterviews() {
-            // Esconde os outros
+        function abrirExhibitions() {
+            // Esconde tudo
             feedContainer.style.display = 'none';
             aboutContainer.style.display = 'none';
-            // Mostra Interviews
+            interviewsContainer.style.display = 'none';
+            // Mostra Exhibitions
+            exhibitionsContainer.style.display = 'block';
+
+            // Menu Bold
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
+            const linkExh = document.getElementById('link-exhibitions');
+            if(linkExh) linkExh.classList.add('ativo-bold');
+
+            window.scrollTo(0,0);
+        }
+
+        function abrirInterviews() {
+            feedContainer.style.display = 'none';
+            aboutContainer.style.display = 'none';
+            exhibitionsContainer.style.display = 'none'; // Esconde
             interviewsContainer.style.display = 'block';
 
-            // Arruma o menu
             document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
             const linkInt = document.getElementById('link-interviews');
             if(linkInt) linkInt.classList.add('ativo-bold');
 
             window.scrollTo(0,0);
-            
-            // Força o Instagram a recarregar o embed (as vezes ele buga se tava escondido)
             if (window.instgrm) window.instgrm.Embeds.process();
         }
 
-        // 2. Abrir About (ATUALIZADO)
         function abrirAbout() {
             feedContainer.style.display = 'none';
-            interviewsContainer.style.display = 'none'; // Esconde interviews
+            interviewsContainer.style.display = 'none';
+            exhibitionsContainer.style.display = 'none'; // Esconde
             aboutContainer.style.display = 'block';
 
             document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
@@ -188,12 +227,12 @@
             window.scrollTo(0,0);
         }
 
-        // 3. Voltar pro Feed (Filtros) (ATUALIZADO)
         function filtrar(categoria) {
             feedContainer.style.display = 'flex'; 
             feedContainer.style.flexDirection = 'column'; 
             aboutContainer.style.display = 'none';
-            interviewsContainer.style.display = 'none'; // Esconde interviews
+            interviewsContainer.style.display = 'none';
+            exhibitionsContainer.style.display = 'none'; // Esconde
 
             document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
             
@@ -211,8 +250,8 @@
             window.scrollTo(0,0);
         }
 
-        // --- FIM DA NAVEGAÇÃO ---
-
+        // --- RESTO DO CÓDIGO (IGUAL AO ANTERIOR) ---
+        
         function abrirMenuMobile() {
             document.getElementById('menu-principal').classList.add('aberto');
             document.body.style.overflow = 'hidden';
@@ -249,7 +288,6 @@
 
                 let midiaHTML = '';
 
-                // ÁUDIO
                 if (arte.tipo === 'audio') {
                     midiaHTML = `
                         <div class="audio-card">
@@ -262,63 +300,32 @@
                                 </button>
                                 <span id="tempo-${index}" class="tempo-audio">0:00</span>
                                 <div class="barra-container" onclick="buscarAudio(event, ${index})">
-                                    <div class="barra-fundo">
-                                        <div id="progresso-${index}" class="barra-progresso"></div>
-                                    </div>
+                                    <div class="barra-fundo"><div id="progresso-${index}" class="barra-progresso"></div></div>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                }
-                // VÍDEO
-                else if (arte.tipo === 'video') {
-                    midiaHTML = `
-                        <div class="imagem-container" onclick="abrirFullscreen(${index})">
-                            <video src="${arte.arquivo}" autoplay loop muted playsinline style="width: 100%; display: block; cursor: zoom-in;"></video>
                         </div>`;
-                }
-                // 3D
-                else if (arte.tipo === '3d') {
-                    midiaHTML = `
-                        <div class="imagem-container" style="height: 500px; background: #f0f0f0; cursor: grab;">
-                            <model-viewer src="${arte.arquivo}" auto-rotate camera-controls shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>
-                        </div>`;
-                }
-                // IMAGEM
-                else {
-                    midiaHTML = `
-                        <div class="imagem-container" onclick="abrirFullscreen(${index})">
-                            <img src="${arte.arquivo}" alt="${arte.titulo}" style="cursor: zoom-in;">
-                        </div>`;
+                } else if (arte.tipo === 'video') {
+                    midiaHTML = `<div class="imagem-container" onclick="abrirFullscreen(${index})"><video src="${arte.arquivo}" autoplay loop muted playsinline style="width: 100%; display: block; cursor: zoom-in;"></video></div>`;
+                } else if (arte.tipo === '3d') {
+                    midiaHTML = `<div class="imagem-container" style="height: 500px; background: #f0f0f0; cursor: grab;"><model-viewer src="${arte.arquivo}" auto-rotate camera-controls shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer></div>`;
+                } else {
+                    midiaHTML = `<div class="imagem-container" onclick="abrirFullscreen(${index})"><img src="${arte.arquivo}" alt="${arte.titulo}" style="cursor: zoom-in;"></div>`;
                 }
 
-                item.innerHTML = `
-                    ${midiaHTML}
-                    <div class="info-container">
-                        <div class="info-esq">
-                            <h2>${arte.titulo}</h2>
-                            <p>${arte.info}</p>
-                            <a class="link-categoria-feed" onclick="filtrar('${arte.categoria}')">${arte.categoria}</a>
-                        </div>
-                        ${tagExtra}
-                    </div>
-                `;
+                item.innerHTML = `${midiaHTML}<div class="info-container"><div class="info-esq"><h2>${arte.titulo}</h2><p>${arte.info}</p><a class="link-categoria-feed" onclick="filtrar('${arte.categoria}')">${arte.categoria}</a></div>${tagExtra}</div>`;
                 feedContainer.appendChild(item);
             });
         }
 
-        // AUDIO FUNCTIONS
         function toggleAudio(index) {
             const player = document.getElementById(`audio-file-${index}`);
             const iconPlay = document.getElementById(`icon-play-${index}`);
             const iconPause = document.getElementById(`icon-pause-${index}`);
-
             if (audioAtual && audioAtual !== player) {
                 audioAtual.pause();
                 document.querySelectorAll('.icon-pause').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.icon-play').forEach(el => el.style.display = 'block');
             }
-
             if (player.paused) {
                 player.play();
                 iconPlay.style.display = 'none';
@@ -330,22 +337,18 @@
                 iconPause.style.display = 'none';
             }
         }
-
         function atualizarBarra(index) {
             const player = document.getElementById(`audio-file-${index}`);
             const progresso = document.getElementById(`progresso-${index}`);
             const tempoTexto = document.getElementById(`tempo-${index}`);
-            
             if (player.duration) {
                 const porcentagem = (player.currentTime / player.duration) * 100;
                 progresso.style.width = porcentagem + '%';
-                
                 const minutos = Math.floor(player.currentTime / 60);
                 const segundos = Math.floor(player.currentTime % 60);
                 tempoTexto.innerText = `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
             }
         }
-
         function carregarTempoTotal(index) {
             const player = document.getElementById(`audio-file-${index}`);
             const tempoTexto = document.getElementById(`tempo-${index}`);
@@ -355,7 +358,6 @@
                 tempoTexto.innerText = `${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
             }
         }
-
         function buscarAudio(e, index) {
             const player = document.getElementById(`audio-file-${index}`);
             const barra = e.currentTarget; 
@@ -364,56 +366,70 @@
             player.currentTime = (clickX / larguraTotal) * player.duration;
         }
 
-        // FULLSCREEN
         const overlay = document.getElementById('fullscreen-overlay');
         const scrollTrack = document.getElementById('fullscreen-scroll');
 
         function abrirFullscreen(indexClicado) {
-            if (listaAtual[indexClicado].tipo === 'audio') return; 
-
+            if (listaAtual[indexClicado].tipo === 'audio') return;
             scrollTrack.innerHTML = ''; 
-            
             listaAtual.forEach((arte, i) => {
                 if (arte.tipo === 'audio') return; 
-
                 const div = document.createElement('div');
                 div.className = 'fullscreen-item';
                 div.id = `fs-item-${i}`;
-                
                 if (arte.tipo === 'video') {
                     div.innerHTML = `<video src="${arte.arquivo}" controls loop style="max-width: 100%; max-height: 95vh;"></video>`;
-                } 
-                else if (arte.tipo === '3d') {
-                     div.innerHTML = `
-                        <model-viewer 
-                            src="${arte.arquivo}" 
-                            auto-rotate 
-                            camera-controls 
-                            shadow-intensity="1" 
-                            style="width: 65%; height: 55vh; margin: 0 auto;"
-                        ></model-viewer>`;
-                }
-                else {
+                } else if (arte.tipo === '3d') {
+                     div.innerHTML = `<model-viewer src="${arte.arquivo}" auto-rotate camera-controls shadow-intensity="1" style="width: 65%; height: 55vh; margin: 0 auto;"></model-viewer>`;
+                } else {
                     div.innerHTML = `<img src="${arte.arquivo}" alt="${arte.titulo}">`;
                 }
                 scrollTrack.appendChild(div);
             });
-
             overlay.style.opacity = '0';
             overlay.classList.remove('escondido');
             document.body.style.overflow = 'hidden';
-
             if (audioAtual) {
                 audioAtual.pause();
                 document.querySelectorAll('.icon-pause').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.icon-play').forEach(el => el.style.display = 'block');
             }
-
             const alvo = document.getElementById(`fs-item-${indexClicado}`);
             if (alvo) alvo.scrollIntoView({ behavior: 'auto' });
-
             iniciarObserver();
+            setTimeout(() => { overlay.style.opacity = '1'; }, 50);
+        }
 
+// --- NOVO: FULLSCREEN DE EXPOSIÇÕES (COM ROLAGEM/FEED) ---
+        function abrirExhibitionFeed(imgClicada) {
+            // 1. Coleta TODAS as imagens dentro da aba Exhibitions
+            const todasImagens = document.querySelectorAll('#exhibitions-content img');
+            
+            // 2. Descobre qual o número (índice) da que você clicou
+            const listaImagens = Array.from(todasImagens);
+            const indexClicado = listaImagens.indexOf(imgClicada);
+
+            // 3. Limpa o overlay e prepara o carrossel
+            scrollTrack.innerHTML = ''; 
+
+            listaImagens.forEach((img, i) => {
+                const div = document.createElement('div');
+                div.className = 'fullscreen-item';
+                div.id = `fs-exh-${i}`; // ID temporário para navegação
+                div.innerHTML = `<img src="${img.src}" alt="Exhibition Photo">`; 
+                scrollTrack.appendChild(div);
+            });
+
+            // 4. Abre o overlay (invisível primeiro)
+            overlay.style.opacity = '0';
+            overlay.classList.remove('escondido');
+            document.body.style.overflow = 'hidden';
+
+            // 5. Rola imediatamente para a foto clicada
+            const alvo = document.getElementById(`fs-exh-${indexClicado}`);
+            if (alvo) alvo.scrollIntoView({ behavior: 'auto' });
+
+            // 6. Aparece suavemente
             setTimeout(() => { overlay.style.opacity = '1'; }, 50);
         }
 
@@ -434,7 +450,6 @@
             const indiceAtual = Math.round(scrollAtual / alturaItem);
             const proximoIndice = indiceAtual + direcao;
             const itens = scrollTrack.children;
-
             if (proximoIndice >= 0 && proximoIndice < itens.length) {
                 itens[proximoIndice].scrollIntoView({ behavior: 'smooth' });
             }
@@ -465,7 +480,6 @@
             fecharFullscreen();
         });
 
-        // INICIALIZA
         if (typeof minhasArtes !== 'undefined') {
             const inicial = embaralhar([...minhasArtes]);
             renderizarFeed(inicial);
