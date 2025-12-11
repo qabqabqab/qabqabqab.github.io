@@ -298,13 +298,9 @@ a:hover { text-decoration: underline; }
     .coluna-meio { 
         padding: 40px 0; 
         margin-top: 80px; 
-        
+        margin-bottom: 80px;
     }
-    .post-arte {
-        margin-bottom: 80px; /* Espaço menor no celular se quiser */
-    }
-    .post-arte:last-child { margin-bottom: 0; }
-    
+
     /* ABOUT NO MOBILE */
     .conteudo-sobre {
         padding: 0 25px; /* Margem lateral menor no celular */
