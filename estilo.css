@@ -51,20 +51,28 @@ a:hover { text-decoration: underline; }
 .coluna-meio {
     background: white;
     overflow-y: scroll;
-    padding: 40px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 120px;
+    padding: 60px 0; /* Mantém o respiro no teto e no chão */
+    display: block; /* Mudei de flex para block (mais seguro pra scroll) */
 }
 .coluna-meio::-webkit-scrollbar { width: 0px; background: transparent; }
 
-/* ARTES */
+/* ARTES (FEED) */
 .post-arte {
     width: 100%;
     max-width: 650px;
     margin: 0 auto;
     padding: 0 20px;
+    
+    /* AQUI ESTÁ A MÁGICA: */
+    /* Cada arte empurra a próxima 150px para baixo */
+    margin-bottom: 80px; 
 }
+
+/* Tira a margem da última arte pra não ficar um buraco gigante no final */
+.post-arte:last-child {
+    margin-bottom: 0;
+}
+
 .post-arte img { width: 100%; height: auto; display: block; transition: opacity 0.2s; }
 .post-arte img:hover { opacity: 0.9; }
 
@@ -83,6 +91,94 @@ a:hover { text-decoration: underline; }
 }
 .botao-link { cursor: pointer; border: 1px solid transparent; }
 .botao-link:hover { background: #ddd; border-color: #ccc; text-decoration: none; }
+
+/* LINK CATEGORIA (FINA) */
+.link-categoria-feed {
+    display: block;
+    font-weight: normal;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+.link-categoria-feed:hover { text-decoration: underline; }
+
+/* --- PÁGINA ABOUT ME (DIAGRAMAÇÃO CORRETA) --- */
+.conteudo-sobre {
+    width: 100%;
+    max-width: 850px; /* Limite de largura */
+    margin: 0 auto;
+    /* Respiro lateral (padding) */
+    padding: 0 40px; 
+    font-size: 0.85rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.conteudo-sobre h2 {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* FOTO DO ABOUT */
+.img-sobre {
+    float: left; /* Flutua à esquerda */
+    width: 200px; /* Tamanho fixo desktop */
+    height: auto;
+    margin-right: 30px; /* Espaço pro texto */
+    margin-bottom: 10px;
+    display: block;
+}
+
+.conteudo-sobre p { margin-bottom: 20px; }
+
+/* --- PLAYER DE MÚSICA --- */
+.audio-card {
+    display: flex;
+    flex-direction: row; 
+    width: 100%;
+    max-width: 650px; 
+    aspect-ratio: 2 / 1; 
+    background-color: #e5e5e5;
+    margin: 0 auto;
+    overflow: hidden; 
+}
+.audio-card img.audio-capa {
+    width: 50% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    margin: 0; padding: 0;
+}
+.audio-interface {
+    width: 50%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    position: relative; padding: 0;
+}
+.btn-play-pause {
+    background: transparent; border: none; cursor: pointer;
+    width: 60px; height: 60px;
+    display: flex; justify-content: center; align-items: center;
+    padding: 0; margin-bottom: 20px; z-index: 10;
+}
+.icon-play, .icon-pause {
+    width: 40px !important; height: 40px !important;
+    fill: black; display: block;
+}
+.barra-container {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 25px; 
+    cursor: pointer; background-color: #ccc; z-index: 10;
+    display: flex; align-items: flex-end;
+}
+.barra-fundo { width: 100%; height: 100%; position: relative; }
+.barra-progresso { width: 0%; height: 100%; background-color: #555; transition: width 0.1s linear; }
+.tempo-audio {
+    position: absolute; bottom: 30px; right: 15px;
+    font-size: 0.75rem; font-family: 'Courier New', Courier, monospace; color: #000;
+}
 
 /* --- COLUNA DIREITA (MENU) --- */
 .coluna-direita {
@@ -152,148 +248,37 @@ a:hover { text-decoration: underline; }
 .seta-baixo { bottom: 10px; }
 @keyframes piscar { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-
-/* --- NOVO: PLAYER DE MÚSICA & CATEGORIA --- */
-
-/* Categoria Clicável (Tipografia Fina) */
-.link-categoria-feed {
-    display: block;
-    font-weight: normal; /* Fina */
-    margin-top: 8px;
-    font-size: 0.75rem;
-    text-decoration: none;
-    cursor: pointer;
-    color: #000;
-}
-.link-categoria-feed:hover { text-decoration: underline; }
-
-/* Player Card */
-.audio-card {
-    display: flex;
-    flex-direction: row; 
-    width: 100%;
-    max-width: 650px; 
-    aspect-ratio: 2 / 1; 
-    background-color: #e5e5e5;
-    margin: 0 auto;
-    overflow: hidden; 
-}
-
-/* Força a imagem a ocupar 50% */
-.audio-card img.audio-capa {
-    width: 50% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block;
-    margin: 0;
-    padding: 0;
-}
-
-.audio-interface {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 0;
-}
-
-.btn-play-pause {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    width: 60px; 
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin-bottom: 20px; 
-    z-index: 10;
-}
-
-.icon-play, .icon-pause {
-    width: 40px !important; 
-    height: 40px !important;
-    fill: black;
-    display: block;
-}
-
-.barra-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25px; /* Barra mais alta para clique fácil */
-    cursor: pointer;
-    background-color: #ccc; 
-    z-index: 10;
-    display: flex;
-    align-items: flex-end;
-}
-
-.barra-fundo {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.barra-progresso {
-    width: 0%;
-    height: 100%;
-    background-color: #555; 
-    transition: width 0.1s linear;
-}
-
-.tempo-audio {
-    position: absolute;
-    bottom: 30px; 
-    right: 15px;
-    font-size: 0.75rem;
-    font-family: 'Courier New', Courier, monospace;
-    color: #000;
-}
-
-
-/* --- MOBILE (SEU CÓDIGO SEGURO) --- */
+/* --- MOBILE --- */
 @media (max-width: 900px) {
     body { overflow: auto; }
     .site-container { display: block; }
 
-    /* HEADER FIXO NO TOPO */
+    /* Header Fixo */
     .coluna-esquerda {
-        position: fixed; /* Fixa no teto */
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px;
-        border-bottom: 1px solid #ddd;
-        flex-direction: row; 
-        align-items: center;
-        background-color: #f4f4f4; /* Fundo opaco */
-        z-index: 1000; /* Acima do feed */
+        position: fixed; top: 0; left: 0; width: 100%;
+        padding: 20px; border-bottom: 1px solid #ddd;
+        flex-direction: row; align-items: center;
+        background-color: #f4f4f4; z-index: 1000; 
     }
     .header-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
 
     .social-links { display: none; } 
     #btn-mobile { display: block; }
 
-    /* MENU OVERLAY DINÂMICO */
+    /* MENU MOBILE (CÓDIGO SEGURO COM REFORÇO) */
     .coluna-direita {
         position: fixed; top: 0; left: 0; width: 100%; 
         height: 100vh; /* Fallback */
-        height: 100dvh; /* Altura Dinâmica para iPhone */
+        height: 100dvh; 
         background: #e5e5e5; z-index: 1001;
         display: none; 
         padding-top: 80px; 
         text-align: center;
     }
     
-    /* Regra para abrir o menu (Do seu código seguro) */
+    /* ADICIONEI !IMPORTANT AQUI PARA GARANTIR QUE ABRA */
     .coluna-direita.aberto { 
-        display: flex; 
+        display: flex !important; 
         flex-direction: column; 
         align-items: center; 
         justify-content: center; 
@@ -301,21 +286,33 @@ a:hover { text-decoration: underline; }
     
     #btn-fechar-menu { display: block; }
 
-    /* ÍCONES COM MARGEM DE SEGURANÇA (Do seu código seguro) */
+    /* Ícones com margem segura */
     .social-mobile-menu {
-        display: flex;
-        gap: 15px;
-        margin-top: auto; 
+        display: flex; gap: 15px; margin-top: auto; 
         padding-bottom: 120px; 
     }
     .social-mobile-menu a { display: block; width: 24px; height: 24px; color: #000; }
     .social-mobile-menu svg { width: 100%; height: 100%; fill: currentColor; }
 
-    /* EMPURRA O FEED PRA BAIXO PRA NÃO FICAR ATRÁS DO HEADER FIXO */
+    /* Feed com margem do topo para o header fixo */
     .coluna-meio { 
         padding: 40px 0; 
-        margin-top: 80px; /* Compensa o header fixo */
-        gap: 60px; 
+        margin-top: 80px; 
+        gap: 80px; 
     }
+    
+    /* ABOUT NO MOBILE */
+    .conteudo-sobre {
+        padding: 0 25px; /* Margem lateral menor no celular */
+    }
+    
+    .img-sobre {
+        float: none;
+        display: block;
+        width: 100% !important;
+        max-width: 300px;
+        margin: 0 auto 30px auto;
+    }
+
     .info-container { flex-direction: column; gap: 10px; }
 }
