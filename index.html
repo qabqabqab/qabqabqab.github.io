@@ -65,6 +65,33 @@
                 </div>
             </div>
 
+            <!-- 3. INTERVIEWS (ESCONDIDO POR PADRÃO) -->
+            <div id="interviews-content" class="conteudo-interviews" style="display: none;">
+                
+                <!-- POST 1: EMBED DO INSTAGRAM -->
+                <article class="post-interview">
+                    <!-- Título e Info (Opcional) -->
+                    <h2>SKATE ARTE VISUAL</h2>
+                    <p>entrevista para coletivo Carlton, 2025</p>
+
+                    <!-- CÓDIGO DE EMBED DO INSTAGRAM -->
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DH-YK4jOjt7/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                    </blockquote>
+                    <!-- O Script que faz o embed funcionar -->
+                    <script async src="//www.instagram.com/embed.js"></script>
+                </article>
+
+                <!-- EXEMPLO POST 2: VÍDEO LOCAL (FUTURO) -->
+                <!-- 
+                <article class="post-interview">
+                    <h2>My Documentary</h2>
+                    <p>video file, 2023</p>
+                    <video src="imagens/meu-video.mp4" controls style="width: 100%;"></video>
+                </article> 
+                -->
+
+            </div>
+
         </main>
 
         <!-- COLUNA 3: MENU -->
@@ -91,7 +118,7 @@
             <ul>
                 <!-- LINK ABOUT CHAMA A FUNÇÃO -->
                 <li><a href="#" id="link-about" class="menu-link" onclick="abrirAbout(); fecharMenuMobile()">about me</a></li>
-                <li><a href="#">interviews</a></li>
+                <li><a href="#" id="link-interviews" class="menu-link" onclick="abrirInterviews(); fecharMenuMobile()">interviews</a></li>
                 <li><a href="#">exhibitions</a></li>
                 <li><a href="#">tutorials</a></li>
             </ul>
@@ -122,11 +149,70 @@
     <script>
         const feedContainer = document.getElementById('feed-artes');
         const aboutContainer = document.getElementById('about-content');
+        const interviewsContainer = document.getElementById('interviews-content'); // NOVO
         let listaAtual = []; 
         let observerVideos; 
         let audioAtual = null;
 
-        // --- MENU MOBILE (SEGURO) ---
+        // --- NAVEGAÇÃO ENTRE PÁGINAS ---
+
+        // 1. Abrir Interviews (NOVO)
+        function abrirInterviews() {
+            // Esconde os outros
+            feedContainer.style.display = 'none';
+            aboutContainer.style.display = 'none';
+            // Mostra Interviews
+            interviewsContainer.style.display = 'block';
+
+            // Arruma o menu
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
+            const linkInt = document.getElementById('link-interviews');
+            if(linkInt) linkInt.classList.add('ativo-bold');
+
+            window.scrollTo(0,0);
+            
+            // Força o Instagram a recarregar o embed (as vezes ele buga se tava escondido)
+            if (window.instgrm) window.instgrm.Embeds.process();
+        }
+
+        // 2. Abrir About (ATUALIZADO)
+        function abrirAbout() {
+            feedContainer.style.display = 'none';
+            interviewsContainer.style.display = 'none'; // Esconde interviews
+            aboutContainer.style.display = 'block';
+
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
+            const linkAbout = document.getElementById('link-about');
+            if(linkAbout) linkAbout.classList.add('ativo-bold');
+
+            window.scrollTo(0,0);
+        }
+
+        // 3. Voltar pro Feed (Filtros) (ATUALIZADO)
+        function filtrar(categoria) {
+            feedContainer.style.display = 'flex'; 
+            feedContainer.style.flexDirection = 'column'; 
+            aboutContainer.style.display = 'none';
+            interviewsContainer.style.display = 'none'; // Esconde interviews
+
+            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
+            
+            let idParaAtivar = 'link-' + categoria.replace(' ', '-');
+            if (categoria === 'todos') idParaAtivar = 'link-todos';
+            const linkAtivo = document.getElementById(idParaAtivar);
+            if(linkAtivo) linkAtivo.classList.add('ativo-bold');
+
+            if(categoria === 'todos') {
+                renderizarFeed(embaralhar([...minhasArtes]));
+            } else {
+                const filtradas = minhasArtes.filter(a => a.categoria === categoria);
+                renderizarFeed(embaralhar(filtradas));
+            }
+            window.scrollTo(0,0);
+        }
+
+        // --- FIM DA NAVEGAÇÃO ---
+
         function abrirMenuMobile() {
             document.getElementById('menu-principal').classList.add('aberto');
             document.body.style.overflow = 'hidden';
@@ -136,7 +222,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- ALEATÓRIO ---
         function embaralhar(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -145,7 +230,6 @@
             return array;
         }
 
-        // --- RENDERIZAR FEED (COM AUDIO + CATEGORIA) ---
         function renderizarFeed(lista) {
             feedContainer.innerHTML = ''; 
             listaAtual = lista; 
@@ -208,7 +292,6 @@
                         </div>`;
                 }
 
-                // INSERINDO CATEGORIA CLICÁVEL ABAIXO DA INFO
                 item.innerHTML = `
                     ${midiaHTML}
                     <div class="info-container">
@@ -224,42 +307,7 @@
             });
         }
 
-        // --- FUNÇÃO ABRIR ABOUT ---
-        function abrirAbout() {
-            feedContainer.style.display = 'none';
-            aboutContainer.style.display = 'block';
-
-            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
-            const linkAbout = document.getElementById('link-about');
-            if(linkAbout) linkAbout.classList.add('ativo-bold');
-
-            window.scrollTo(0,0);
-        }
-
-        // --- FILTROS ---
-        function filtrar(categoria) {
-            feedContainer.style.display = 'flex'; 
-            feedContainer.style.flexDirection = 'column'; 
-            aboutContainer.style.display = 'none';
-
-            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('ativo-bold'));
-            
-            let idParaAtivar = 'link-' + categoria.replace(' ', '-');
-            if (categoria === 'todos') idParaAtivar = 'link-todos';
-            
-            const linkAtivo = document.getElementById(idParaAtivar);
-            if(linkAtivo) linkAtivo.classList.add('ativo-bold');
-
-            if(categoria === 'todos') {
-                renderizarFeed(embaralhar([...minhasArtes]));
-            } else {
-                const filtradas = minhasArtes.filter(a => a.categoria === categoria);
-                renderizarFeed(embaralhar(filtradas));
-            }
-            window.scrollTo(0,0);
-        }
-
-        // --- FUNÇÕES DE ÁUDIO ---
+        // AUDIO FUNCTIONS
         function toggleAudio(index) {
             const player = document.getElementById(`audio-file-${index}`);
             const iconPlay = document.getElementById(`icon-play-${index}`);
@@ -316,7 +364,7 @@
             player.currentTime = (clickX / larguraTotal) * player.duration;
         }
 
-        // --- FULLSCREEN ---
+        // FULLSCREEN
         const overlay = document.getElementById('fullscreen-overlay');
         const scrollTrack = document.getElementById('fullscreen-scroll');
 

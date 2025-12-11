@@ -248,6 +248,44 @@ a:hover { text-decoration: underline; }
 .seta-baixo { bottom: 10px; }
 @keyframes piscar { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
+/* --- PÁGINA INTERVIEWS (COM RESPIRO) --- */
+.conteudo-interviews {
+    width: 100%;
+    max-width: 650px; 
+    margin: 0 auto;
+    /* AQUI ESTÁ A SOLUÇÃO: 40px de respiro nas laterais */
+    padding: 0 40px; 
+    display: none; /* Começa escondido, o JS que mostra */
+}
+
+.post-interview {
+    margin-bottom: 100px; /* Espaço entre entrevistas */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-interview h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase; /* Deixa em caixa alta igual seu print */
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.post-interview p {
+    font-size: 0.8rem;
+    color: #000;
+    margin-bottom: 20px; /* Espaço antes do vídeo/embed */
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Ajuste para embeds (Instagram/Youtube) ficarem centralizados */
+.instagram-media {
+    margin: 0 auto !important;
+}
+
 /* --- MOBILE --- */
 @media (max-width: 900px) {
     body { overflow: auto; }
@@ -315,4 +353,52 @@ a:hover { text-decoration: underline; }
     }
 
     .info-container { flex-direction: column; gap: 10px; }
+
+    /* --- PÁGINA INTERVIEWS --- */
+.conteudo-interviews {
+    width: 100%;
+    max-width: 650px; /* Mesma largura do feed de arte */
+    margin: 0 auto;
+    padding: 0 40px;
+    display: none; /* Começa escondido */
+}
+
+.post-interview {
+    margin-bottom: 150px; /* Mesmo espaçamento do seu feed */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os embeds */
+}
+
+.post-interview h2 {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.post-interview p {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Ajuste para embeds do Instagram ficarem centralizados */
+.instagram-media {
+    margin: 0 auto !important;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 900px) {
+    .conteudo-interviews {
+        padding: 0 25px; /* Respiro seguro no celular */
+    }
+    .post-interview {
+        margin-bottom: 80px; /* Mesmo do feed mobile */
+    }
+    
+}
 }
